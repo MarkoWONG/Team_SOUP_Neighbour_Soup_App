@@ -1,35 +1,66 @@
-import { Text, View, StyleSheet, TouchableOpacity, Button } from 'react-native';
+import { Text, Alert, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { SearchBar } from '@rneui/themed';
+import React, { useState } from 'react';
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function Buy({ route, navigation }) {
-  return (
-    <View style={styles.main_container}>
-        {/*///////////////////////        Title       ///////////////////////*/}
-        <View style={styles.title_container}>
-            <Text style={styles.title} >I Want to ...</Text>
-        </View>
-        
-        {/*///////////////////////        Tabs        ///////////////////////*/}
-        <View style={styles.tabs_container}>
-            <View style={styles.first_tab} >
-                <Text style={styles.first_tab_text}>Buy</Text>
+    const [search, setSearch] = useState("");
+
+    const updateSearch = (search) => {
+        setSearch(search);
+    };
+    return (
+        <View style={styles.main_container}>
+            {/*///////////////////////        Title       ///////////////////////*/}
+            <View style={styles.title_container}>
+                <Text style={styles.title} >I Want to ...</Text>
             </View>
-            <View style={styles.second_tab} >
+
+            {/*///////////////////////        Tabs        ///////////////////////*/}
+            <View style={styles.tabs_container}>
+                <View style={styles.first_tab} >
+                    <Text style={styles.first_tab_text}>Buy</Text>
+                </View>
+                <View style={styles.second_tab} >
+                    <TouchableOpacity 
+                        style={{height: '100%', width: '100%', backgroundColor: "#ebebeb",}}
+                        onPress={() => navigation.navigate("Sell")}
+                    >
+                        <Text style={styles.second_tab_text}>Sell</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+            {/*///////////////////////       Search       ///////////////////////*/}
+            <View style={styles.search_container}>    
+                <SearchBar
+                    placeholder="Type Here..."
+                    onChangeText={updateSearch}
+                    value={search}
+                    lightTheme={true}
+                    round={true}
+                    containerStyle={styles.search_style}
+                    onClear={() => Alert.alert('Search Option', 'When user finishes entering search keywords it will filter the results according to the keywords') }
+                />
                 <TouchableOpacity 
-                    style={{height: '100%', width: '100%', backgroundColor: "#ebebeb",}}
-                    onPress={() => navigation.navigate("Sell")}
+                    style={styles.filter_style}
+                    onPress={() => Alert.alert('Filter Option', 'When tapped a Popup will appear with filter options') }
                 >
-                    <Text style={styles.second_tab_text}>Sell</Text>
+                    <FontAwesome name="filter" size={45} color="black" />
+                </TouchableOpacity>
+                <TouchableOpacity 
+                    style={styles.sort_style}
+                    onPress={() => Alert.alert('Sort Option', 'When tapped a Popup will appear with sort options') }
+                >
+                    <FontAwesome name="sort-amount-desc" size={40} color="black" />
                 </TouchableOpacity>
             </View>
+            {/*///////////////////////      Listings      ///////////////////////*/}
+            <View style={styles.listing_container}>
+                <Text style={styles.title} >Listing1</Text>
+                <Text style={styles.title} >Listing2</Text>
+            </View>
         </View>
-
-         {/*///////////////////////      Listings      ///////////////////////*/}
-        <View style={styles.listing_container}>
-            <Text style={styles.title} >Listing1</Text>
-            <Text style={styles.title} >Listing2</Text>
-        </View>
-    </View>
-  );
+    );
 }
 
 const styles= StyleSheet.create({
@@ -46,6 +77,10 @@ const styles= StyleSheet.create({
     tabs_container: {
         backgroundColor: '#ffffff',
         height: '8%',
+        alignItems: "start",
+        flexDirection: 'row',
+    },
+    search_container: {
         alignItems: "start",
         flexDirection: 'row',
     },
@@ -85,5 +120,22 @@ const styles= StyleSheet.create({
     second_tab_text: {
         textAlign: 'center',
         fontSize: 50,
-      },
+    },
+    search_style: {
+        width: '80%',
+        height: '101%',
+        backgroundColor: 'white',
+        borderBottomColor: 'white',
+        borderTopColor: 'white',
+    },
+    filter_style: {
+        textAlign: 'center',
+        flexDirection: 'row',
+        paddingTop: 10,
+    },
+    sort_style: {
+        textAlign: 'center',
+        flexDirection: 'row',
+        paddingTop: 15,
+    },
 });

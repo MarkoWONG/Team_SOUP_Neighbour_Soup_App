@@ -1,6 +1,13 @@
-import { Text, View, StyleSheet, TouchableOpacity, Button } from 'react-native';
-
+import { Text, Alert, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { SearchBar } from '@rneui/themed';
+import React, { useState } from 'react';
+import { FontAwesome } from '@expo/vector-icons';
 export default function Sell({ route, navigation }) {
+    const [search, setSearch] = useState("");
+
+    const updateSearch = (search) => {
+        setSearch(search);
+    };
   return (
     <View style={styles.main_container}>
         {/*///////////////////////        Title       ///////////////////////*/}
@@ -22,7 +29,30 @@ export default function Sell({ route, navigation }) {
                 <Text style={styles.second_tab_text}>Sell</Text>
             </View>
         </View>
-
+        {/*///////////////////////       Search       ///////////////////////*/}
+        <View style={styles.search_container}>    
+            <SearchBar
+                placeholder="Type Here..."
+                onChangeText={updateSearch}
+                value={search}
+                lightTheme={true}
+                round={true}
+                containerStyle={styles.search_style}
+                onClear={() => Alert.alert('Search Option', 'When user finishes entering search keywords it will filter the results according to the keywords') }
+            />
+            <TouchableOpacity 
+                style={styles.filter_style}
+                onPress={() => Alert.alert('Filter Option', 'When tapped a Popup will appear with filter options') }
+            >
+                <FontAwesome name="filter" size={45} color="black" />
+            </TouchableOpacity>
+            <TouchableOpacity 
+                style={styles.sort_style}
+                onPress={() => Alert.alert('Sort Option', 'When tapped a Popup will appear with sort options') }
+            >
+                <FontAwesome name="sort-amount-desc" size={40} color="black" />
+            </TouchableOpacity>
+        </View>
         {/*///////////////////////      Listings      ///////////////////////*/}
         <View style={styles.listing_container}>
             <Text style={styles.title} >Listing1</Text>
@@ -67,6 +97,10 @@ const styles= StyleSheet.create({
         alignItems: 'flex-end',
         marginRight: 20,
     },
+    search_container: {
+        alignItems: "start",
+        flexDirection: 'row',
+    },
     first_tab: {
         height: '100%', 
         width: '50%', 
@@ -103,5 +137,22 @@ const styles= StyleSheet.create({
         textAlign: 'center',
         fontSize: 25,
         color: 'white'
+    },
+    search_style: {
+        width: '80%',
+        height: '101%',
+        backgroundColor: 'white',
+        borderBottomColor: 'white',
+        borderTopColor: 'white',
+    },
+    filter_style: {
+        textAlign: 'center',
+        flexDirection: 'row',
+        paddingTop: 10,
+    },
+    sort_style: {
+        textAlign: 'center',
+        flexDirection: 'row',
+        paddingTop: 15,
     },
 });
