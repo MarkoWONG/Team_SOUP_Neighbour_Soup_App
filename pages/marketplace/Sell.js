@@ -16,7 +16,7 @@ export default function Sell({ route, navigation }) {
 
     // Uncomment to clear all listings
     //  useEffect(() => {
-    //     StoreService.clearlistings();
+    //     StoreService.clear();
     //   }, []);
 
     // read listings from cache on first render
@@ -92,7 +92,7 @@ export default function Sell({ route, navigation }) {
                         key={idx}
                         title={title}
                         onPress={() =>
-                            navigation.navigate("ListingDetails", {
+                            navigation.navigate("Edit Listing", {
                                 image, title, price, category, description
                             })
                         }
@@ -213,11 +213,11 @@ const styles= StyleSheet.create({
     listing_style: {
         borderRadius: 10,
         borderColor: '#6BB972',
-        borderWidth: 1,
+        borderWidth: 2,
         justifyContent: 'space-between',
-        // alignItems: 'center',
         flexDirection: 'row',
         marginBottom: 10,
+        padding:10,
     },
     listing_text: {
         color: "black",

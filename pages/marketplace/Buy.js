@@ -194,11 +194,11 @@ const styles= StyleSheet.create({
     listing_style: {
         borderRadius: 10,
         borderColor: '#6BB972',
-        borderWidth: 1,
+        borderWidth: 2,
         justifyContent: 'space-between',
-        // alignItems: 'center',
         flexDirection: 'row',
         marginBottom: 10,
+        padding:10,
     },
     listing_text: {
         color: "black",

@@ -7,6 +7,7 @@ import Sell from "./pages/marketplace/Sell";
 import Buy from "./pages/marketplace/Buy";
 import CreateListing from "./pages/marketplace/CreateListing";
 import ListingDetails from './pages/marketplace/ListingDetails';
+import EditListing from './pages/marketplace/EditListing';
 const RootStack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
 
@@ -51,6 +52,17 @@ export default function App() {
                 <RootStack.Screen
                 name="Add Listing"
                 component={CreateListing}
+                options={{ 
+                    headerStyle: {height: 120},
+                    headerTitleStyle: {fontSize: 20}, 
+                    headerBackTitle: "", 
+                    headerBackTitleStyle: {fontSize: 30},
+                    headerTintColor: 'black'
+                }}
+                />
+                <RootStack.Screen
+                name="Edit Listing"
+                component={EditListing}
                 options={{ 
                     headerStyle: {height: 120},
                     headerTitleStyle: {fontSize: 20}, 

@@ -28,7 +28,7 @@ export default {
       console.log("Store set error:", err);
     }
   },
-  async clearlistings() {
+  async clear() {
     try {
       await AsyncStorage.clear();
     } catch (err) {
