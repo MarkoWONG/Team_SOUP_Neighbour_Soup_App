@@ -218,8 +218,6 @@ const styles= StyleSheet.create({
         // alignItems: 'center',
         flexDirection: 'row',
         marginBottom: 10,
-        width: '100%',
-        height: '100%',
     },
     listing_text: {
         color: "black",
