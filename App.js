@@ -62,8 +62,13 @@ export default function App() {
                 <RootStack.Screen
                     name="ListingDetails"
                     component={ListingDetails}
-                    // options={{ presentation: "modal" }}
-                    // options={{ headerBackVisible: false }}
+                    options={{ 
+                        headerStyle: {height: 120},
+                        headerTitleStyle: {fontSize: 20}, 
+                        headerBackTitle: "", 
+                        headerBackTitleStyle: {fontSize: 30},
+                        headerTintColor: 'black'
+                    }}
                 />
             </RootStack.Navigator>
         </NavigationContainer>

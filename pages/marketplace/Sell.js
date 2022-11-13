@@ -97,15 +97,15 @@ export default function Sell({ route, navigation }) {
                             })
                         }
                     >
-                            <Text style={styles.listing_text} >{title}{"\n"}${price}</Text>
+                        <Text style={styles.listing_text} >{title}{"\n"}${price}</Text>
                             {image ? (
                                 <Image
                                     source={{ uri: image }}
-                                    resizeMode="contain"
+                                    resizeMode="cover"
                                     style={{ height: '100%', width: '20%', borderRadius:10 }}
                                 /> 
                             ) : ( <View ></View>)}
-                            <FontAwesome name="edit" size={50} color="black" />
+                        <FontAwesome name="edit" size={50} color="black" />
                     </TouchableOpacity>
                 ))}
         </ScrollView>
