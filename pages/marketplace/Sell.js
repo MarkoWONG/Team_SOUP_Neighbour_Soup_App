@@ -97,20 +97,15 @@ export default function Sell({ route, navigation }) {
                             })
                         }
                     >
-                            <Text style={styles.title} >{title}</Text>
+                            <Text style={styles.listing_text} >{title}{"\n"}${price}</Text>
                             {image ? (
                                 <Image
                                     source={{ uri: image }}
-                                    resizeMode="stretch"
+                                    resizeMode="contain"
                                     style={{ height: '100%', width: '20%', borderRadius:10 }}
                                 /> 
-                                ) : (
-                                    <View >
-                                    
-                                    </View>
-                                )}
-                            <Text style={styles.title} >${price}</Text>
-                            <FontAwesome name="edit" size={24} color="black" />
+                            ) : ( <View ></View>)}
+                            <FontAwesome name="edit" size={50} color="black" />
                     </TouchableOpacity>
                 ))}
         </ScrollView>
@@ -220,7 +215,16 @@ const styles= StyleSheet.create({
         borderColor: '#6BB972',
         borderWidth: 1,
         justifyContent: 'space-between',
+        // alignItems: 'center',
         flexDirection: 'row',
         marginBottom: 10,
-    }
+        width: '100%',
+        height: '100%',
+    },
+    listing_text: {
+        color: "black",
+        textAlign: 'left',
+        fontSize: 20,
+        fontWeight: "bold",
+    },
 });
