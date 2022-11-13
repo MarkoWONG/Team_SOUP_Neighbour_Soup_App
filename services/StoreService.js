@@ -1,21 +1,21 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const TODOS_CACHE_KEY = "@todos";
+const listings_CACHE_KEY = "@listings";
 
 export default {
-  async getTodos() {
+  async getlistings() {
     try {
-      const data = await AsyncStorage.getItem(TODOS_CACHE_KEY);
-      const cachedTodos = JSON.parse(data) ?? [];
-      return cachedTodos;
+      const data = await AsyncStorage.getItem(listings_CACHE_KEY);
+      const cachedlistings = JSON.parse(data) ?? [];
+      return cachedlistings;
     } catch (err) {
       console.log("Store get error:", err);
     }
   },
 
-  async saveTodos(todos) {
+  async savelistings(listings) {
     try {
-      await AsyncStorage.setItem(TODOS_CACHE_KEY, JSON.stringify(todos));
+      await AsyncStorage.setItem(listings_CACHE_KEY, JSON.stringify(listings));
     } catch (err) {
       console.log("Store set error:", err);
     }

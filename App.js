@@ -1,4 +1,3 @@
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { Fontisto } from '@expo/vector-icons';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
@@ -7,8 +6,7 @@ import Marketplace from "./pages/marketplace/Buy";
 import Sell from "./pages/marketplace/Sell";
 import Buy from "./pages/marketplace/Buy";
 import CreateListing from "./pages/marketplace/CreateListing";
-import { View } from 'react-native';
-
+import ListingDetails from './pages/marketplace/ListingDetails';
 const RootStack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
 
@@ -60,6 +58,12 @@ export default function App() {
                     headerBackTitleStyle: {fontSize: 30},
                     headerTintColor: 'black'
                 }}
+                />
+                <RootStack.Screen
+                    name="ListingDetails"
+                    component={ListingDetails}
+                    // options={{ presentation: "modal" }}
+                    // options={{ headerBackVisible: false }}
                 />
             </RootStack.Navigator>
         </NavigationContainer>

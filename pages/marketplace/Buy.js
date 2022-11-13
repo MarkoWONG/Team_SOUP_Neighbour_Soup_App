@@ -11,12 +11,12 @@ export default function Buy({ route, navigation }) {
     };
     return (
         <View style={styles.main_container}>
-            {/*///////////////////////        Title       ///////////////////////*/}
+            {/*/////////////////////        Title       /////////////////////*/}
             <View style={styles.title_container}>
                 <Text style={styles.title} >I Want to ...</Text>
             </View>
 
-            {/*///////////////////////        Tabs        ///////////////////////*/}
+            {/*/////////////////////        Tabs        /////////////////////*/}
             <View style={styles.tabs_container}>
                 <View style={styles.first_tab} >
                     <Text style={styles.first_tab_text}>Buy</Text>
@@ -30,7 +30,7 @@ export default function Buy({ route, navigation }) {
                     </TouchableOpacity>
                 </View>
             </View>
-            {/*///////////////////////       Search       ///////////////////////*/}
+            {/*//////////////////////       Search       ////////////////////*/}
             <View style={styles.search_container}>    
                 <SearchBar
                     placeholder="Type Here..."
@@ -54,7 +54,7 @@ export default function Buy({ route, navigation }) {
                     <FontAwesome name="sort-amount-desc" size={40} color="black" />
                 </TouchableOpacity>
             </View>
-            {/*///////////////////////      Listings      ///////////////////////*/}
+            {/*/////////////////////      Listings      /////////////////////*/}
             <View style={styles.listing_container}>
                 <Text style={styles.title} >Listing1</Text>
                 <Text style={styles.title} >Listing2</Text>

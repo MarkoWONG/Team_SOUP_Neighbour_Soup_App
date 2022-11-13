@@ -1,13 +1,35 @@
-import { Text, Alert, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, Alert, Button, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { SearchBar } from '@rneui/themed';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
+import StoreService from '../../services/StoreService';
+
 export default function Sell({ route, navigation }) {
     const [search, setSearch] = useState("");
 
     const updateSearch = (search) => {
         setSearch(search);
     };
+
+    const [listings, setlistings] = useState([]);
+    // read listings from cache on first render
+    useEffect(() => {
+      StoreService.getlistings().then(
+        (cachedlistings) => cachedlistings && setlistings(cachedlistings)
+      );
+    }, []);
+  
+    useEffect(() => {
+      const { image, title, price, category, description } = route.params ?? {};
+      if (title) {
+        setlistings((prevlistings) => [...prevlistings, { image, title, price, category, description }]);
+      }
+    }, [route.params]);
+  
+    useEffect(() => {
+      StoreService.savelistings(listings);
+    }, [listings]);
+
   return (
     <View style={styles.main_container}>
         {/*///////////////////////        Title       ///////////////////////*/}
@@ -56,7 +78,17 @@ export default function Sell({ route, navigation }) {
         {/*///////////////////////      Listings      ///////////////////////*/}
         <View style={styles.listing_container}>
             <Text style={styles.title} >Listing1</Text>
-            <Text style={styles.title} >Listing2</Text>
+            {listings.map(({ image, title, price, category, description }, idx) => (
+                <Button
+                key={idx}
+                title={title}
+                onPress={() =>
+                    navigation.navigate("ListingDetails", {
+                        image, title, price, category, description
+                    })
+                }
+                />
+            ))}
         </View>
         {/*///////////////////////   Create Button    ///////////////////////*/}
         <View style={styles.create_container}>
