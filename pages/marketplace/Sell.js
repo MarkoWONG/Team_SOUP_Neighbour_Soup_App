@@ -1,4 +1,4 @@
-import { Text, Alert, Button, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, Alert, View, StyleSheet, TouchableOpacity, ScrollView, Image} from 'react-native';
 import { SearchBar } from '@rneui/themed';
 import React, { useEffect, useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
@@ -11,7 +11,14 @@ export default function Sell({ route, navigation }) {
         setSearch(search);
     };
 
+    // stores all listings
     const [listings, setlistings] = useState([]);
+
+    // Uncomment to clear all listings
+    //  useEffect(() => {
+    //     StoreService.clearlistings();
+    //   }, []);
+
     // read listings from cache on first render
     useEffect(() => {
       StoreService.getlistings().then(
@@ -21,7 +28,7 @@ export default function Sell({ route, navigation }) {
   
     useEffect(() => {
       const { image, title, price, category, description } = route.params ?? {};
-      if (title) {
+      if (title && price) {
         setlistings((prevlistings) => [...prevlistings, { image, title, price, category, description }]);
       }
     }, [route.params]);
@@ -29,6 +36,7 @@ export default function Sell({ route, navigation }) {
     useEffect(() => {
       StoreService.savelistings(listings);
     }, [listings]);
+
 
   return (
     <View style={styles.main_container}>
@@ -77,18 +85,35 @@ export default function Sell({ route, navigation }) {
         </View>
         {/*///////////////////////      Listings      ///////////////////////*/}
         <View style={styles.listing_container}>
-            <Text style={styles.title} >Listing1</Text>
-            {listings.map(({ image, title, price, category, description }, idx) => (
-                <Button
-                key={idx}
-                title={title}
-                onPress={() =>
-                    navigation.navigate("ListingDetails", {
-                        image, title, price, category, description
-                    })
-                }
-                />
-            ))}
+            <ScrollView style={styles.scroll_container}>
+                {listings.map(({ image, title, price, category, description }, idx) => (
+                    <TouchableOpacity
+                        style={styles.listing_style}
+                        key={idx}
+                        title={title}
+                        onPress={() =>
+                            navigation.navigate("ListingDetails", {
+                                image, title, price, category, description
+                            })
+                        }
+                    >
+                            <Text style={styles.title} >{title}</Text>
+                            {image ? (
+                                <Image
+                                    source={{ uri: image }}
+                                    resizeMode="stretch"
+                                    style={{ height: '100%', width: '20%', borderRadius:10 }}
+                                /> 
+                                ) : (
+                                    <View >
+                                    
+                                    </View>
+                                )}
+                            <Text style={styles.title} >${price}</Text>
+                            <FontAwesome name="edit" size={24} color="black" />
+                    </TouchableOpacity>
+                ))}
+        </ScrollView>
         </View>
         {/*///////////////////////   Create Button    ///////////////////////*/}
         <View style={styles.create_container}>
@@ -115,18 +140,20 @@ const styles= StyleSheet.create({
         alignItems: "start",
     },
     tabs_container: {
-        backgroundColor: '#ffffff',
         height: '8%',
         alignItems: "start",
         flexDirection: 'row',
     },
     listing_container: {
-        backgroundColor: '#ffffff',
         height: '55%',
-        alignItems: "center",
+        alignItems: 'center',
+        // borderWidth: 1
+    },
+    scroll_container: {
+        width: '95%',
+        // borderWidth: 1
     },
     create_container: {
-        backgroundColor: '#ffffff',
         alignItems: 'flex-end',
         marginRight: 20,
     },
@@ -188,4 +215,12 @@ const styles= StyleSheet.create({
         flexDirection: 'row',
         paddingTop: 15,
     },
+    listing_style: {
+        borderRadius: 10,
+        borderColor: '#6BB972',
+        borderWidth: 1,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        marginBottom: 10,
+    }
 });

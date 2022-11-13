@@ -34,10 +34,6 @@ export default function CreateListing({ route, navigation }) {
         }
     };
     
-    //on each letter update
-    const updatetitle = (title) => {
-        setTitle(title);
-    };
     return (
         <View style={styles.main_container}>
             {/*////////////////        Inputs Fields       //////////////////*/}
@@ -110,7 +106,14 @@ export default function CreateListing({ route, navigation }) {
             <View style={styles.create_container}>
                 <TouchableOpacity 
                     style={{borderRadius: 30, backgroundColor: "#6BB972", width: '50%'}}
-                    onPress={() => navigation.navigate("Sell", { image, title, price, category, description })}
+                    onPress={() => {
+                        if(title && price && image && category && description) {
+                            navigation.navigate("Sell", { image, title, price, category, description })
+                        } 
+                        else{
+                            Alert.alert("All input fields are required", "Please enter something in each input field")
+                        }
+                    }}
                 >
                     <Text style={styles.create_button_text}>+ Create Listing</Text>
                 </TouchableOpacity>

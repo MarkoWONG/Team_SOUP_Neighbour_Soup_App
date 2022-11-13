@@ -20,4 +20,19 @@ export default {
       console.log("Store set error:", err);
     }
   },
+
+  async deletelistings() {
+    try {
+      await AsyncStorage.removeItem(listings_CACHE_KEY);
+    } catch (err) {
+      console.log("Store set error:", err);
+    }
+  },
+  async clearlistings() {
+    try {
+      await AsyncStorage.clear();
+    } catch (err) {
+      console.log("Store set error:", err);
+    }
+  },
 };
