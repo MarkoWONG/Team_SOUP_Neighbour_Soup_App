@@ -62,6 +62,7 @@ export default function Sell({ route, navigation }) {
         <View style={styles.create_container}>
             <TouchableOpacity 
                 style={{borderRadius: 30, backgroundColor: "#6BB972", width: '45%'}}
+                onPress={() => navigation.navigate("Add Listing")}
             >
                 <Text style={styles.create_button_text}>+ Add Listing</Text>
             </TouchableOpacity>
