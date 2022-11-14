@@ -3,18 +3,17 @@ import { Input} from '@rneui/themed';
 import React, { useState, useEffect } from 'react';
 import * as ImagePicker from "expo-image-picker";
 import { FontAwesome } from '@expo/vector-icons';
-export default function EditListing({ route, navigation }) {
 
+export default function EditListing({ route, navigation }) {
 
     const {  image, title, price, category, description  } = route.params ?? {};
 
-
     //For user inputs
-    const [image_new, setImage] = useState(image);
-    const [title_new, setTitle] = useState(title);
-    const [price_new, setPrice] = useState(price);
-    const [category_new, setCategory] = useState(category);
-    const [description_new, setDescription] = useState(description);
+    const [imageN, setImage] = useState(image);
+    const [titleN, setTitle] = useState(title);
+    const [priceN, setPrice] = useState(price);
+    const [categoryN, setCategory] = useState(category);
+    const [descriptionN, setDescription] = useState(description);
 
     // For pucking an image
     useEffect(() => {
@@ -75,12 +74,14 @@ export default function EditListing({ route, navigation }) {
                 <Input
                     placeholder={title}
                     onChangeText={setTitle}
+                    // placeholderTextColor= 'black'
                     containerStyle= {styles.outer_input_container}
                     inputContainerStyle= {{borderBottomWidth: 0}}
                     inputStyle= {{fontSize: 25}}
                 />
                 <Input
                     placeholder={price}
+                    // placeholderTextColor= 'black'
                     onChangeText={setPrice}
                     containerStyle= {styles.outer_input_container}
                     inputContainerStyle= {{borderBottomWidth: 0}}
@@ -89,6 +90,7 @@ export default function EditListing({ route, navigation }) {
                 />
                 <Input
                     placeholder={category}
+                    // placeholderTextColor= 'black'
                     onChangeText={setCategory}
                     containerStyle= {styles.outer_input_container}
                     inputContainerStyle= {{borderBottomWidth: 0}}
@@ -96,6 +98,7 @@ export default function EditListing({ route, navigation }) {
                 />
                 <Input
                     placeholder={description}
+                    // placeholderTextColor= 'black'
                     onChangeText={setDescription}
                     containerStyle= {styles.outer_input_container}
                     inputContainerStyle= {{borderBottomWidth: 0}}
@@ -112,11 +115,7 @@ export default function EditListing({ route, navigation }) {
                 <TouchableOpacity 
                     style={{borderRadius: 30, backgroundColor: "#6BB972", width: '50%', marginBottom: 10}}
                     onPress={() => {
-                        console.log("Hello", {title})
-                        navigation.setParams({image: image_new, title: "hi", price: price_new, category: category_new, description:description_new});
-                        console.log("Hello2", {title})
-                        navigation.navigate("Sell", { image, title, price, category, description })
-                        // navigation.navigate("Sell", { image, title_new, price_new, category_new, description_new })
+                        navigation.navigate("Sell", { imageN, titleN, priceN, categoryN, descriptionN })
                     }}
                 >
                     <Text style={styles.create_button_text}>+ Save Listing</Text>
@@ -133,7 +132,10 @@ export default function EditListing({ route, navigation }) {
                                 },
                                 {
                                     text: "Yes, I'm Sure",
-                                    onPress: () => {navigation.navigate("Sell")},
+                                    onPress: () => {
+                                        {setTitle("")};
+                                        navigation.navigate("Sell", { imageN, titleN, priceN, categoryN, descriptionN })
+                                },
                                 },
                             ],
                         )

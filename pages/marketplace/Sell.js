@@ -29,13 +29,26 @@ export default function Sell({ route, navigation }) {
     useEffect(() => {
       const { image, title, price, category, description } = route.params ?? {};
       if (title && price) {
-        setlistings((prevlistings) => [...prevlistings, { image, title, price, category, description }]);
+            setlistings((prevlistings) => [...prevlistings, { image, title, price, category, description }]);
       }
     }, [route.params]);
+    useEffect(() => {
+        const { image_new, title_new, price_new, category_new, description_new } = route.params ?? {};
+        if (title_new && price_new) {
+            console.log("HelloN1", {title_new})
+            setlistings((prevlistings) => [...prevlistings, { image_new, title_new, price_new, category_new, description_new }]);
+        }
+        }, [route.params]);
   
     useEffect(() => {
       StoreService.savelistings(listings);
     }, [listings]);
+
+    const deleteListings = (index) => {
+        let listingCopy = [...listings];
+        listingCopy.splice(index, 1);
+        setlistings(listingCopy);
+    }
 
 
   return (
@@ -91,10 +104,13 @@ export default function Sell({ route, navigation }) {
                         style={styles.listing_style}
                         key={idx}
                         title={title}
-                        onPress={() =>
+                        onPress={() => {
+                            // delete listing then recreate new listing via edit lising page
+                            deleteListings(idx);
                             navigation.navigate("Edit Listing", {
                                 image, title, price, category, description
                             })
+                            }
                         }
                     >
                         <Text style={styles.listing_text} >{title}{"\n"}${price}</Text>

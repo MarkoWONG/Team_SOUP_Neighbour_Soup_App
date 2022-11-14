@@ -135,7 +135,7 @@ const styles= StyleSheet.create({
     },
     listing_container: {
         backgroundColor: '#ffffff',
-        height: '100%',
+        height: '80%',
         alignItems: "center",
     },
     scroll_container: {

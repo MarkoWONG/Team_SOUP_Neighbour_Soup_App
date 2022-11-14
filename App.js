@@ -66,9 +66,7 @@ export default function App() {
                 options={{ 
                     headerStyle: {height: 120},
                     headerTitleStyle: {fontSize: 20}, 
-                    headerBackTitle: "", 
-                    headerBackTitleStyle: {fontSize: 30},
-                    headerTintColor: 'black'
+                    headerBackVisible: false
                 }}
                 />
                 <RootStack.Screen
