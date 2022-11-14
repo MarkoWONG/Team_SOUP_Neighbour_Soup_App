@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, Image, TouchableOpacity, ScrollView } from "react-native";
-import { AntDesign, Ionicons  } from '@expo/vector-icons';
+import { AntDesign, Ionicons , MaterialIcons  } from '@expo/vector-icons';
 import { Input, Icon} from '@rneui/themed';
 
 export default function ListingDetails({ route, navigation }) {
     const {  image, title, price, category, description  } = route.params ?? {};
-    useEffect(() => navigation.setOptions({ title }), []);
+    // useEffect(() => navigation.setOptions({ title }), []);
+    const [msg, setMsg] = useState("");
+
     return (
         <View style={{alignItems: "center"}}>
             {/*////////////////            image           //////////////////*/}
@@ -40,17 +42,26 @@ export default function ListingDetails({ route, navigation }) {
                             containerStyle={{height:'60%' ,width:'88%', borderWidth: 1,borderRadius:10}}
                             inputContainerStyle={{borderBottomWidth: 0}}
                             placeholder='Is this still available?'
+                            onChangeText={setMsg}
                             rightIcon={
-                                <Ionicons name="send-outline" size={24} color="black" />
+                                <TouchableOpacity
+                                    // Change to message page later
+                                    onPress={() => navigation.navigate("Buy", msg)}
+                                >
+                                    <Ionicons name="send-outline" size={24} color="black" />
+                                </TouchableOpacity>
                             }
                         />
                     </View>
                 </View>
                 {/*////////////////          Seller info       //////////////////*/}
-                <View style={{height:'25%', width: '100%', borderWidth:0 }}>
-                    <Text style= {{fontSize: 30, fontWeight: 'bold'}}>Seller Information</Text>
-                    <Text>Seller Profile</Text>
-                    <Text>Seller name</Text>
+                <View style={{height:'25%', width: '100%', borderWidth:0 ,}}>
+                    <Text style= {{fontSize: 30, fontWeight: 'bold', marginBottom: 10}}>Seller Information</Text>
+                    <View style={{flexDirection: 'row'}}>
+                        <MaterialIcons name="supervised-user-circle" size={80
+                        } color="black" />
+                        <Text style={{fontSize: 40, marginTop:10, marginLeft: 20}}>Jacky</Text>
+                    </View>
                 </View>
             </ScrollView>
         </View>

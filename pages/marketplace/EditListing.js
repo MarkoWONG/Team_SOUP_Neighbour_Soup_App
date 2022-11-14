@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 import * as ImagePicker from "expo-image-picker";
 import { FontAwesome } from '@expo/vector-icons';
 export default function EditListing({ route, navigation }) {
+
+    // const {  image, title, price, category, description  } = route.params ?? {};
+
     //For user inputs
     const [image, setImage] = useState(null);
     const [title, setTitle] = useState("");
