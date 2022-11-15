@@ -1,0 +1,14 @@
+{
+  "channels": {
+    "1": {
+      "name": "coles apple group",
+      "group": true,
+      "messages": [
+        {
+          "message": "c",
+          "sender": "Marko"
+        }
+      ]
+    }
+  }
+}
