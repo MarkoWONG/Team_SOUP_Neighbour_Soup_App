@@ -1,4 +1,4 @@
-import { Fontisto } from '@expo/vector-icons';
+import { Fontisto, FontAwesome  } from '@expo/vector-icons';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -8,6 +8,7 @@ import Buy from "./pages/marketplace/Buy";
 import CreateListing from "./pages/marketplace/CreateListing";
 import ListingDetails from './pages/marketplace/ListingDetails';
 import EditListing from './pages/marketplace/EditListing';
+import Profile from './pages/profile/profile';
 const RootStack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
 
@@ -21,13 +22,13 @@ export default function App() {
             tabBarIcon: ({ size }) => <Fontisto name="shopping-store" size={size} color="black" />,
             }}
         />
-        {/* <Tabs.Screen
+        <Tabs.Screen
             name="Profile"
-            component={account}
+            component={Profile}
             options={{
-            tabBarIcon: ({ size }) => <Ionicons name="md-settings" size={size} />,
+            tabBarIcon: ({ size }) => <FontAwesome name="user-circle-o" size={size} color="black" />,
             }}
-        /> */}
+        />
         </Tabs.Navigator>
     );
 

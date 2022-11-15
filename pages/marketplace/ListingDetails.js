@@ -5,7 +5,6 @@ import { Input, Icon} from '@rneui/themed';
 
 export default function ListingDetails({ route, navigation }) {
     const {  image, title, price, category, description  } = route.params ?? {};
-    // useEffect(() => navigation.setOptions({ title }), []);
     const [msg, setMsg] = useState("");
 
     return (
@@ -58,8 +57,7 @@ export default function ListingDetails({ route, navigation }) {
                 <View style={{height:'25%', width: '100%', borderWidth:0 ,}}>
                     <Text style= {{fontSize: 30, fontWeight: 'bold', marginBottom: 10}}>Seller Information</Text>
                     <View style={{flexDirection: 'row'}}>
-                        <MaterialIcons name="supervised-user-circle" size={80
-                        } color="black" />
+                        <MaterialIcons name="supervised-user-circle" size={80} color="black" />
                         <Text style={{fontSize: 40, marginTop:10, marginLeft: 20}}>Jacky</Text>
                     </View>
                 </View>
