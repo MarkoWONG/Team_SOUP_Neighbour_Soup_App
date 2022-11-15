@@ -41,13 +41,18 @@ export default function EditListing({ route, navigation }) {
         <View style={styles.main_container}>
             {/*////////////////        Inputs Fields       //////////////////*/}
             <View style={styles.input_main_container}>
-                    {image ? (
+                    {image_new ? (
                         <View style={styles.photo_container}>
-                            <Image
-                                source={{ uri: image }}
+                            <TouchableOpacity 
+                                style={styles.re_add_photos}
+                                onPress={pickImage}
+                            >
+                                <Image
+                                source={{ uri: image_new }}
                                 resizeMode="stretch"
                                 style={{ height: '100%', width: '100%', alignSelf: "center", borderRadius:10 }}
-                            />
+                            /> 
+                            </TouchableOpacity>
                             <View style={styles.add_photos_container_2}>
                                 <TouchableOpacity 
                                     style={styles.add_photos}
@@ -171,6 +176,14 @@ const styles= StyleSheet.create({
         height: '35%',
         width: '100%',
         marginBottom: 20,
+    },
+    re_add_photos: {
+        textAlign: 'center',
+        borderColor: '#9e9e9d', 
+        alignItems: 'center',
+        flexDirection: 'column',
+        width: '100%',
+        height: '100%',
     },
     add_photos: {
         textAlign: 'center',
