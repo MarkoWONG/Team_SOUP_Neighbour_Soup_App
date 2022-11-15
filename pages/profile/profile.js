@@ -1,6 +1,6 @@
 import { Text, Alert, View, StyleSheet, TouchableOpacity , Image} from 'react-native';
 import { Input} from '@rneui/themed';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, FontAwesome  } from '@expo/vector-icons';
 
 export default function Profile({ route, navigation }) {
     return (
@@ -11,20 +11,47 @@ export default function Profile({ route, navigation }) {
                 <MaterialIcons name="supervised-user-circle" size={80} color="black" />
             </View>
             {/*///////////////////       input fields       ////////////////////*/}
-            <View style={styles.input_fields_container}>
+            <View style={styles.outer_field_container}>
                 <Input
                     placeholder="Jacky"
-                    // placeholderTextColor={"black"}
                     disabled= "true"
-                    disabledInputStyle={{color: 'black'}}
-                    containerStyle= {styles.outer_input_container}
+                    disabledInputStyle={{color: 'black', }}
+                    containerStyle= {styles.input_fields_container}
                     inputContainerStyle= {{borderBottomWidth: 0}}
-                    inputStyle= {{fontSize: 25}}
+                    inputStyle= {{fontSize: 30, marginLeft: 20}}
+                    leftIcon= {<FontAwesome name="user" size={30} color="black" />}
+                />
+                <Input
+                    placeholder="01/01/2000"
+                    disabled= "true"
+                    disabledInputStyle={{color: 'black', }}
+                    containerStyle= {styles.input_fields_container}
+                    inputContainerStyle= {{borderBottomWidth: 0}}
+                    inputStyle= {{fontSize: 30, marginLeft: 20}}
+                    leftIcon= {<FontAwesome name="birthday-cake" size={24} color="black" />}
+                />
+                <Input
+                    placeholder="+61 0412 033 011"
+                    disabled= "true"
+                    disabledInputStyle={{color: 'black', }}
+                    containerStyle= {styles.input_fields_container}
+                    inputContainerStyle= {{borderBottomWidth: 0}}
+                    inputStyle= {{fontSize: 30, marginLeft: 20}}
+                    leftIcon= {<FontAwesome name="mobile-phone" size={40} color="black" />}
+                />
+                <Input
+                    placeholder="160million@gmail.com"
+                    disabled= "true"
+                    disabledInputStyle={{color: 'black', }}
+                    containerStyle= {styles.input_fields_container}
+                    inputContainerStyle= {{borderBottomWidth: 0}}
+                    inputStyle= {{fontSize: 30, marginLeft: 20}}
+                    leftIcon= {<MaterialIcons name="mail" size={30} color="black" />}
                 />
             </View>
             {/*/////////////////////      Acessibility        /////////////////////*/}
             <View style={styles.accessibility_container}>
-                
+                <Text>Acessibility</Text>
             </View>
 
             {/*/////////////////////      edit button        /////////////////////*/}
@@ -61,19 +88,30 @@ const styles= StyleSheet.create({
         height: '25%', 
         width: '100%',
     },
-    input_fields_container:{
-        borderWidth: 1, 
-        borderColor: '#9e9e9d', 
+    outer_field_container:{
+        paddingTop: 10,
+        borderWidth: 0, 
+        borderColor: 'black', 
         alignItems: 'center',
-        flexDirection: 'row',
+        // flexDirection: 'row',
         height: '35%',
         width: '95%',
     },
-    accessibility_container:{
-        alignItems: 'center',
-        flexDirection: 'column',
-        borderWidth: 1,
+    input_fields_container:{
+        borderWidth: 1, 
         borderRadius: 10,
+        borderColor: 'grey', 
+        alignItems: 'center',
+        flexDirection: 'row',
+        height: '20%',
+        width: '100%',
+        marginBottom:10
+    },
+    accessibility_container:{
+        // alignItems: 'center',
+        // justifyContent: 'space-around',
+        // flexDirection: 'column',
+        borderTopWidth: 1,
         height: '30%',
         width: '100%',
     },
@@ -97,4 +135,8 @@ const styles= StyleSheet.create({
         fontSize: 25,
         color: 'white',
     },
+    outer_input_container: {
+        width:'100%',
+        height: '10%',
+    }
 });
