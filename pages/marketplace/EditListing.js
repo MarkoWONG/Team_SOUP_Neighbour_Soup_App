@@ -5,9 +5,7 @@ import * as ImagePicker from "expo-image-picker";
 import { FontAwesome } from '@expo/vector-icons';
 export default function EditListing({ route, navigation }) {
 
-
     const {  image, title, price, category, description  } = route.params ?? {};
-
 
     //For user inputs
     const [image_new, setImage] = useState(image);
@@ -112,11 +110,7 @@ export default function EditListing({ route, navigation }) {
                 <TouchableOpacity 
                     style={{borderRadius: 30, backgroundColor: "#6BB972", width: '50%', marginBottom: 10}}
                     onPress={() => {
-                        console.log("Hello", {title})
-                        navigation.setParams({image: image_new, title: "hi", price: price_new, category: category_new, description:description_new});
-                        console.log("Hello2", {title})
-                        navigation.navigate("Sell", { image, title, price, category, description })
-                        // navigation.navigate("Sell", { image, title_new, price_new, category_new, description_new })
+                        navigation.navigate("Sell", { image_new, title_new, price_new, category_new, description_new })
                     }}
                 >
                     <Text style={styles.create_button_text}>+ Save Listing</Text>

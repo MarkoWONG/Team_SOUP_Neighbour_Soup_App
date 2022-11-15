@@ -35,10 +35,15 @@ export default function Sell({ route, navigation }) {
     useEffect(() => {
         const { image_new, title_new, price_new, category_new, description_new } = route.params ?? {};
         if (title_new && price_new) {
-            console.log("HelloN1", {title_new})
-            setlistings((prevlistings) => [...prevlistings, { image_new, title_new, price_new, category_new, description_new }]);
+            setlistings((prevlistings) => [...prevlistings,{
+                image: image_new, 
+                title: title_new,
+                price: price_new,
+                category: category_new,
+                description: description_new,
+            }]);
         }
-        }, [route.params]);
+    }, [route.params]);
   
     useEffect(() => {
       StoreService.savelistings(listings);
@@ -108,7 +113,7 @@ export default function Sell({ route, navigation }) {
                             // delete listing then recreate new listing via edit lising page
                             deleteListings(idx);
                             navigation.navigate("Edit Listing", {
-                                image, title, price, category, description
+                                idx, image, title, price, category, description
                             })
                             }
                         }
