@@ -1,48 +1,116 @@
-import { View, Text, StyleSheet, SafeAreaView, StatusBar, Pressable, Alert, Image, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, StatusBar, Pressable, Alert, Image, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import { TextInput, IconButton } from '@react-native-material/core'
 import ImagePicker from 'react-native-image-picker';
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import database from './data.json'
+import { useEffect, useState } from 'react';
 
-export default function messaging() {
+export default function messaging({ name, group, directMessage, p_title, p_price }) {
+  const createAlert = () => {
+    Alert.alert(
+      "Open gallery",
+      "User can select image here",
+      [
+        { text: "OK" }
+      ]
+    );
+  }
+
+  useEffect(() => {
+    if (directMessage) {
+      const msg = {
+                    id: message.length + 1,
+                    message: directMessage,
+                    sender: "self"
+                  }    
+
+      setMessage([...message, msg])
+    }
+  }, [])
+
+  // console.log(database.channels)
+
+  const [input, setInput] = useState('')
+  const [message, setMessage] = useState([])
+
+  // function fetchMessage() {
+
+  // }
+
+  function handleClick() {
+    const msg = {
+                  id: message.length + 1,
+                  message: input,
+                  sender: "self"
+                }    
+    setMessage([...message, msg])
+    setInput('')
+  }
+
+  // useEffect(() => {
+  //   setMessage(database.channels[52976].messages)
+  // }, [])
+
   return (
-    <SafeAreaView style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <SafeAreaView style={styles.container}>
 
-      <View style={styles.header}>
-        <Text style={styles.name}>Jacky</Text>
-        <Text style={styles.status}>Online 14hr ago</Text>
-      </View>
-
-      <View style={styles.productContainer}>
-        <Image
-          style={styles.img}
-          source={require('../../images_icons/apple.jpg')}
-        />
-        <View style={styles.details}>
-          <Text style={{ fontSize: 24, marginBottom: 5 }}>Apple 100g</Text>
-          <Text style={{ fontSize: 24 }}>AUD $5</Text>
+        <View style={styles.header}>
+          <Text style={styles.name}>{name}</Text>
+          {group
+            ? <></>
+            : <Text style={styles.status}>Online 14hr ago</Text>
+          }
+          
         </View>
-      </View>
+
+        {group
+          ? <></>
+          : <View style={styles.productContainer}>
+              <Image
+                style={styles.img}
+                source={require('../../images_icons/apple.jpg')}
+              />
+              <View style={styles.details}>
+                <Text style={{ fontSize: 24, marginBottom: 5 }}>{p_title}</Text>
+                <Text style={{ fontSize: 24 }}>AUD ${p_price}</Text>
+              </View>
+            </View>
+        }
+      
+        {message.map(({ id, message }) => (
+          <MessageRight text={message} key={id}/>
+        ))}
+
+        {/* <MessageLeft text="Hello"/>
+        <MessageRight text="akshd "/> */}
+
+        <TextInput 
+          style={styles.input}
+          placeholder="Type here..."
+          returnKeyType='done'
+          onChangeText={text => setInput(text)}
+          value={input}
+        />
+
+        <IconButton 
+          onPress={handleClick}
+          icon={props => <Icon name="send" {...props} />} 
+          style={{ position: 'absolute', bottom: 35, right: 60 }}
+        />
+
+        <IconButton 
+          onPress={createAlert}
+          icon={props => <Icon name="view-gallery" {...props} />} 
+          style={{ position: 'absolute', bottom: 35, right: 10 }}
+        />
+
+      </SafeAreaView>
+    </KeyboardAvoidingView>
     
-      <MessageLeft text="Hello"/>
-      <MessageRight text="akshd "/>
-
-      <TextInput 
-        style={styles.input}
-        placeholder="Type here..."
-        returnKeyType='done'
-      />
-
-      <IconButton 
-        icon={props => <Icon name="send" {...props} />} 
-        style={{ position: 'absolute', bottom: 35, right: 60 }}
-      />
-
-      <IconButton 
-        icon={props => <Icon name="view-gallery" {...props} />} 
-        style={{ position: 'absolute', bottom: 35, right: 10 }}
-      />
-
-    </SafeAreaView>
   )
 }
 

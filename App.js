@@ -9,7 +9,11 @@ export default function App() {
     //   <Text style={styles.title} >OpeSSn up App.js to start working on your app! >:D</Text>
     //   <StatusBar style="auto" />
     // </View>
-    <Messaging />
+    <Messaging 
+      name="Jacky"
+      p_title="Apple 100g"
+      p_price="5"
+    />
   );
 }
 
