@@ -33,6 +33,13 @@ export default function App() {
             tabBarIcon: ({ size }) => <FontAwesome name="user-circle-o" size={size} color="black" />,
             }}
         />
+        <Tabs.Screen
+            name="Jacky Sucks"
+            component={Signup}
+            options={{
+            tabBarIcon: ({ size }) => <FontAwesome name="user-circle-o" size={size} color="black" />,
+            }}
+        />
         </Tabs.Navigator>
     );
 
