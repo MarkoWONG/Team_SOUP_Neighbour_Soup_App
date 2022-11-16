@@ -22,7 +22,7 @@ export default function Signin({ navigation }) {
         <Input placeholder="Email address" />
         <Input placeholder="Password" />
 
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} >
           <Text style={styles.buttonText}>Sign in</Text>
         </Pressable>
       </View>

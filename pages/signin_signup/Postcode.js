@@ -1,8 +1,17 @@
 import { TextInput } from '@react-native-material/core'
 import { useState } from 'react'
-import { View, Text, StyleSheet, SafeAreaView, StatusBar, Pressable } from 'react-native'
+import { Alert, View, Text, StyleSheet, SafeAreaView, StatusBar, Pressable } from 'react-native'
 
 export default function Postcode() {
+  const createAlert = () =>
+    Alert.alert(
+      "Terms and Conditions",
+      "This is a screen to show Terms and Conditions",
+      [
+        { text: "OK" }
+      ]
+    );
+
   const [valid, setValid] = useState(false)
 
   function checkInput (event) {
@@ -31,7 +40,11 @@ export default function Postcode() {
       />
 
         <Text style={styles.altText}>
-          Review our <Text style={{ color: '#4878D4' }}>privacy policy</Text> here
+          Review our 
+          <Text style={{ color: '#4878D4' }} onPress={createAlert}>
+            &nbsp; privacy policy &nbsp;
+          </Text> 
+           here
         </Text>
 
       </View>
