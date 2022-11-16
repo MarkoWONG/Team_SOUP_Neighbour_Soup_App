@@ -10,6 +10,9 @@ import ListingDetails from './pages/marketplace/ListingDetails';
 import EditListing from './pages/marketplace/EditListing';
 import Profile from './pages/profile/Profile';
 import EditProfile from './pages/profile/Editprofile';
+import Postcode from './pages/signin_signup/Postcode.js';
+import Signin from './pages/signin_signup/Signin.js'
+import Signup from './pages/signin_signup/Signup.js'
 const RootStack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
 
@@ -86,6 +89,21 @@ export default function App() {
                     name="Edit Profile"
                     component={EditProfile}
                     options={{animation: 'none',  headerShown: false,}}
+                />
+                <RootStack.Screen 
+                  name="Signup" 
+                  component={Signup} 
+                  options={{ headerShown: false }}
+                />
+                <RootStack.Screen 
+                  name="Signin" 
+                  component={Signin} 
+                  options={{ headerShown: false }}
+                />
+                <RootStack.Screen
+                  name="Postcode"
+                  component={Postcode}
+                  options={{ headerShown: false }}
                 />
             </RootStack.Navigator>
         </NavigationContainer>

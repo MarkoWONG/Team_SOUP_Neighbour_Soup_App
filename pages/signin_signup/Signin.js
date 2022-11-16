@@ -1,39 +1,44 @@
 import { TextInput } from '@react-native-material/core'
-import { View, Text, StyleSheet, SafeAreaView, StatusBar, Pressable } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, StatusBar, Pressable, Alert } from 'react-native'
 
-export default function Signup({ navigation }) {
+export default function Signin({ navigation }) {
+  const createAlert = () =>
+    Alert.alert(
+      "Reset your password",
+      "This is a screen for user to reset their password",
+      [
+        { text: "OK" }
+      ]
+    );
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={[styles.colour, styles.title]}>Hello!</Text>
-        <Text style={styles.title}>Signup to</Text>
-        <Text style={styles.title}>get started</Text>
+        <Text style={[styles.colour, styles.title]}>Hello Again!</Text>
+        <Text style={styles.title}>Welcome back</Text>
       </View>
 
       <View style={styles.inputContainer}>
-        <Input placeholder="Name" />
         <Input placeholder="Email address" />
         <Input placeholder="Password" />
-        <Input placeholder="Confirm your password" />
 
-        <Pressable 
-          style={styles.button} 
-          onPress={() =>
-            navigation.navigate('Postcode')
-          }
-          >
-          <Text style={styles.buttonText}>Sign up</Text>
+        <Pressable style={styles.button}>
+          <Text style={styles.buttonText}>Sign in</Text>
         </Pressable>
       </View>
       
       <View style={styles.bottomContainer}>
-        <Text style={styles.altText}>Already have an accounts?</Text>
+        <Pressable
+          onPress={createAlert}
+        >
+          <Text style={styles.altText}>Forget Your Password?</Text>
+        </Pressable>
         <Pressable
           onPress={() =>
-            navigation.navigate('Signin')
+            navigation.navigate('Signup')
           }
         >
-          <Text style={[styles.altText, styles.underline]}>Sign in</Text>
+          <Text style={styles.altText}>Sign up</Text>
         </Pressable>
       </View>
       
@@ -98,9 +103,7 @@ const styles = StyleSheet.create({
   altText: {
     fontSize: 15, 
     color: '#777D84', 
-    marginBottom: 5
-  },
-  underline: {
-    textDecorationLine: 'underline'
+    textDecorationLine: 'underline',
+    marginBottom: 10
   }
 })
