@@ -1,11 +1,11 @@
 import { Text, Alert, View, StyleSheet, TouchableOpacity , Image} from 'react-native';
 import { Input} from '@rneui/themed';
-import { Ionicons, MaterialIcons, FontAwesome, MaterialCommunityIcons  } from '@expo/vector-icons';
+import { Feather , Ionicons, MaterialIcons, FontAwesome, MaterialCommunityIcons  } from '@expo/vector-icons';
 
-export default function Profile({ route, navigation }) {
+export default function EditProfile({ route, navigation }) {
     return (
         <View style={styles.main_container}>
-            {/*////////////////        Profile Fields       //////////////////*/}
+            {/*////////////////        Inputs Fields       //////////////////*/}
             <View style={styles.Profile_Top_container}>
                 <Text style={{fontSize: 35, fontWeight:'bold'}}>Jacky</Text>
                 <MaterialIcons name="supervised-user-circle" size={80} color="black" />
@@ -14,39 +14,35 @@ export default function Profile({ route, navigation }) {
             <View style={styles.outer_field_container}>
                 <Input
                     placeholder="Jacky"
-                    disabled= "true"
-                    disabledInputStyle={{color: 'black', }}
                     containerStyle= {styles.input_fields_container}
                     inputContainerStyle= {{borderBottomWidth: 0}}
                     inputStyle= {{fontSize: 30, marginLeft: 20}}
                     leftIcon= {<FontAwesome name="user" size={30} color="black" />}
+                    rightIcon= {<Feather name="edit-3" size={30} color="black" />}
                 />
                 <Input
                     placeholder="01/01/2000"
-                    disabled= "true"
-                    disabledInputStyle={{color: 'black', }}
                     containerStyle= {styles.input_fields_container}
                     inputContainerStyle= {{borderBottomWidth: 0}}
                     inputStyle= {{fontSize: 30, marginLeft: 20}}
                     leftIcon= {<FontAwesome name="birthday-cake" size={24} color="black" />}
+                    rightIcon= {<Feather name="edit-3" size={30} color="black" />}
                 />
                 <Input
                     placeholder="+61 0412 033 011"
-                    disabled= "true"
-                    disabledInputStyle={{color: 'black', }}
                     containerStyle= {styles.input_fields_container}
                     inputContainerStyle= {{borderBottomWidth: 0}}
                     inputStyle= {{fontSize: 30, marginLeft: 20}}
                     leftIcon= {<FontAwesome name="mobile-phone" size={40} color="black" />}
+                    rightIcon= {<Feather name="edit-3" size={30} color="black" />}
                 />
                 <Input
                     placeholder="160million@gmail.com"
-                    disabled= "true"
-                    disabledInputStyle={{color: 'black', }}
                     containerStyle= {styles.input_fields_container}
                     inputContainerStyle= {{borderBottomWidth: 0}}
                     inputStyle= {{fontSize: 30, marginLeft: 20}}
                     leftIcon= {<MaterialIcons name="mail" size={30} color="black" />}
+                    rightIcon= {<Feather name="edit-3" size={30} color="black" />}
                 />
             </View>
             {/*/////////////////////      Acessibility        /////////////////////*/}
@@ -97,9 +93,11 @@ export default function Profile({ route, navigation }) {
             <View style={styles.edit_container}>
                 <TouchableOpacity 
                     style={{borderRadius: 10, borderWidth: 1, width: '75%', height: '80%', alignItems: 'center', justifyContent: 'center'}}
-                    onPress={() => navigation.navigate("Edit Profile")}
+                    onPress={() => {
+                        navigation.navigate("Profile")
+                    }}
                 >
-                    <Text style={styles.create_button_text}>Edit Profile</Text>
+                    <Text style={styles.create_button_text}>Save</Text>
                 </TouchableOpacity>
             </View>
         </View>

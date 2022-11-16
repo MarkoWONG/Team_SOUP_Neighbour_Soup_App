@@ -8,7 +8,8 @@ import Buy from "./pages/marketplace/Buy";
 import CreateListing from "./pages/marketplace/CreateListing";
 import ListingDetails from './pages/marketplace/ListingDetails';
 import EditListing from './pages/marketplace/EditListing';
-import Profile from './pages/profile/profile';
+import Profile from './pages/profile/Profile';
+import EditProfile from './pages/profile/Editprofile';
 const RootStack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
 
@@ -80,6 +81,11 @@ export default function App() {
                         headerBackTitleStyle: {fontSize: 30},
                         headerTintColor: 'black'
                     }}
+                />
+                <RootStack.Screen
+                    name="Edit Profile"
+                    component={EditProfile}
+                    options={{animation: 'none',  headerShown: false,}}
                 />
             </RootStack.Navigator>
         </NavigationContainer>
