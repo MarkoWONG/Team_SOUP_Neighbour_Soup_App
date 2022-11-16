@@ -13,6 +13,7 @@ import EditProfile from './pages/profile/Editprofile';
 import Postcode from './pages/signin_signup/Postcode.js';
 import Signin from './pages/signin_signup/Signin.js'
 import Signup from './pages/signin_signup/Signup.js'
+import Tutorial from './pages/signin_signup/Tutorial';
 const RootStack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
 
@@ -47,6 +48,11 @@ export default function App() {
         <NavigationContainer>
             <RootStack.Navigator initialRouteName="BottomTabs">
                 <RootStack.Screen
+                name="Tutorial"
+                component={Tutorial}
+                options={{ headerShown: false, }}
+                />
+                {/* <RootStack.Screen
                 name="BottomTabs"
                 component={TabsNav}
                 options={{ headerShown: false }}
@@ -111,7 +117,7 @@ export default function App() {
                   name="Postcode"
                   component={Postcode}
                   options={{ headerShown: false }}
-                />
+                /> */}
             </RootStack.Navigator>
         </NavigationContainer>
     );
