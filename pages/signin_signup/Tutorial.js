@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { View, Text, StyleSheet, SafeAreaView, StatusBar, Pressable, Alert, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import {Image} from 'react-native' ; 
 
-export default function Tutorial() {
+export default function Tutorial({ navigation }) {
   const createAlert = () =>
     Alert.alert(
       "Tutorials",

@@ -48,11 +48,6 @@ export default function App() {
         <NavigationContainer>
             <RootStack.Navigator initialRouteName="BottomTabs">
                 <RootStack.Screen
-                name="Tutorial"
-                component={Tutorial}
-                options={{ headerShown: false, }}
-                />
-                {/* <RootStack.Screen
                 name="BottomTabs"
                 component={TabsNav}
                 options={{ headerShown: false }}
@@ -117,7 +112,12 @@ export default function App() {
                   name="Postcode"
                   component={Postcode}
                   options={{ headerShown: false }}
-                /> */}
+                />
+                <RootStack.Screen
+                name="Tutorial"
+                component={Tutorial}
+                options={{ headerShown: false, }}
+                />
             </RootStack.Navigator>
         </NavigationContainer>
     );

@@ -1,8 +1,8 @@
 import { TextInput } from '@react-native-material/core'
 import { useState } from 'react'
-import { Alert, View, Text, StyleSheet, SafeAreaView, StatusBar, Pressable } from 'react-native'
+import { Alert, View, Text, StyleSheet, SafeAreaView, StatusBar, Pressable, KeyboardAvoidingView } from 'react-native'
 
-export default function Postcode() {
+export default function Postcode({ navigation }) {
   const createAlert = () =>
     Alert.alert(
       "Terms and Conditions",
@@ -23,42 +23,53 @@ export default function Postcode() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text style={[styles.colour, styles.title]}>Welcome to</Text>
-        <Text style={styles.title}>Neighboursoup</Text>
-        <Text style={styles.titleCont}>A few more details to connect you to your neighbourhood</Text>
-      </View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <SafeAreaView style={styles.container}>
+        <View style={styles.titleContainer}>
+          <Text style={[styles.colour, styles.title]}>Welcome to</Text>
+          <Text style={styles.title}>Neighboursoup</Text>
+          <Text style={styles.titleCont}>A few more details to connect you to your neighbourhood</Text>
+        </View>
 
-      <View style={styles.inputContainer}>
-      <TextInput
-        placeholder="Postcode"
-        style={styles.input}
-        keyboardType='numeric'
-        onChangeText={checkInput}
-        returnKeyType='done' 
-      />
+        <View style={styles.inputContainer}>
+        <TextInput
+          placeholder="Postcode"
+          style={styles.input}
+          keyboardType='numeric'
+          onChangeText={checkInput}
+          returnKeyType='done' 
+        />
 
-        <Text style={styles.altText}>
-          Review our 
-          <Text style={{ color: '#4878D4' }} onPress={createAlert}>
-            &nbsp; privacy policy &nbsp;
-          </Text> 
-           here
-        </Text>
+          <Text style={styles.altText}>
+            Review our 
+            <Text style={{ color: '#4878D4' }} onPress={createAlert}>
+              &nbsp; privacy policy &nbsp;
+            </Text> 
+            here
+          </Text>
 
-      </View>
-      
-      {valid
-        ? <Pressable style={[styles.button, styles.validColour]}>
-            <Text style={styles.buttonText}>Confirm</Text>
-          </Pressable>
-        : <Pressable style={[styles.button, styles.invalidColour]}>
-            <Text style={styles.buttonText}>Confirm</Text>
-          </Pressable>
-      }
-      
-    </SafeAreaView>
+        </View>
+        
+        {valid
+          ? <Pressable 
+              style={[styles.button, styles.validColour]}
+              onPress={() =>
+                navigation.navigate('Tutorial')
+              }
+            >
+              <Text style={styles.buttonText}>Confirm</Text>
+            </Pressable>
+          : <Pressable style={[styles.button, styles.invalidColour]}>
+              <Text style={styles.buttonText}>Confirm</Text>
+            </Pressable>
+        }
+        
+      </SafeAreaView>
+    </KeyboardAvoidingView>
+    
   )
 }
 
@@ -108,7 +119,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginBottom: 15,
     position: 'absolute',
-    bottom: 100,
+    bottom: 10,
     alignSelf: 'center'
   },  
   buttonText: {
