@@ -24,7 +24,7 @@ export default function Signin({ navigation }) {
 
   function checkLogin () {
     if (email === 'Jacky@gmail.com' && password === 'password') {
-      navigation.navigate('Home')
+      navigation.navigate('BottomTabs')
     } else {
       loginFailAlert()
     }
