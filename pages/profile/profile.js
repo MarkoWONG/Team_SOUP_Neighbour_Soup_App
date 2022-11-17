@@ -1,19 +1,41 @@
 import { Text, Alert, View, StyleSheet, TouchableOpacity , Image} from 'react-native';
 import { Input} from '@rneui/themed';
 import { Ionicons, MaterialIcons, FontAwesome, MaterialCommunityIcons  } from '@expo/vector-icons';
+import { useState, useEffect} from 'react';
 
 export default function Profile({ route, navigation }) {
+    const [name, setName] = useState("Jacky");
+    const [dob, setDob] = useState("01/01/2000");
+    const [phone, setPhone] = useState("+61 0412 033 011");
+    const [email, setEmail] = useState("160million@gmail.com");
+    useEffect(() => {
+        const { name, dob, phone, email } = route.params ?? {};
+        if (name) {
+            setName(name);
+        }
+        if (dob) {
+            setDob(dob);
+        }
+        if (phone) {
+            setPhone(phone);
+        }
+        if (email) {
+            setEmail(email);
+        }
+      }, [route.params]);
+
+    
     return (
         <View style={styles.main_container}>
             {/*////////////////        Profile Fields       //////////////////*/}
             <View style={styles.Profile_Top_container}>
-                <Text style={{fontSize: 35, fontWeight:'bold'}}>Jacky</Text>
+                <Text style={{fontSize: 35, fontWeight:'bold'}}>{name}</Text>
                 <MaterialIcons name="supervised-user-circle" size={80} color="black" />
             </View>
             {/*///////////////////       input fields       ////////////////////*/}
             <View style={styles.outer_field_container}>
                 <Input
-                    placeholder="Jacky"
+                    placeholder= {name}
                     disabled= "true"
                     disabledInputStyle={{color: 'black', }}
                     containerStyle= {styles.input_fields_container}
@@ -22,7 +44,7 @@ export default function Profile({ route, navigation }) {
                     leftIcon= {<FontAwesome name="user" size={30} color="black" />}
                 />
                 <Input
-                    placeholder="01/01/2000"
+                    placeholder= {dob}
                     disabled= "true"
                     disabledInputStyle={{color: 'black', }}
                     containerStyle= {styles.input_fields_container}
@@ -31,8 +53,9 @@ export default function Profile({ route, navigation }) {
                     leftIcon= {<FontAwesome name="birthday-cake" size={24} color="black" />}
                 />
                 <Input
-                    placeholder="+61 0412 033 011"
+                    placeholder= {phone}
                     disabled= "true"
+                    keyboardType='phone-pad'
                     disabledInputStyle={{color: 'black', }}
                     containerStyle= {styles.input_fields_container}
                     inputContainerStyle= {{borderBottomWidth: 0}}
@@ -40,8 +63,9 @@ export default function Profile({ route, navigation }) {
                     leftIcon= {<FontAwesome name="mobile-phone" size={40} color="black" />}
                 />
                 <Input
-                    placeholder="160million@gmail.com"
+                    placeholder= {email}
                     disabled= "true"
+                    keyboardType='e'
                     disabledInputStyle={{color: 'black', }}
                     containerStyle= {styles.input_fields_container}
                     inputContainerStyle= {{borderBottomWidth: 0}}

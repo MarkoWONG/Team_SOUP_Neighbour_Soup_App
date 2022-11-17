@@ -4,20 +4,26 @@ import { AntDesign, Ionicons , MaterialIcons  } from '@expo/vector-icons';
 import { Input, Icon} from '@rneui/themed';
 
 export default function ListingDetails({ route, navigation }) {
-    const {  image, title, price, category, description  } = route.params ?? {};
+    const {  title, price, category, description  } = route.params ?? {};
     const [msg, setMsg] = useState("");
     return (
         <View style={{alignItems: "center"}}>
             {/*////////////////            image           //////////////////*/}
             <View style={{height:'40%', width: '100%', marginBottom: 10}}>
-                {image && (
+                {title === "apples" 
+                ?<Image
+                    accessibilityIgnoresInvertColors={true}
+                    source={require('../../images_icons/apple.jpg')}
+                    resizeMode='stretch'
+                    style={{ height: '100%', width: '100%', alignSelf: "center" }}
+                />: 
                 <Image
                     accessibilityIgnoresInvertColors={true}
-                    source={{ uri: image }}
+                    source={require('../../images_icons/WeetBix.png')}
                     resizeMode='stretch'
                     style={{ height: '100%', width: '100%', alignSelf: "center" }}
                 />
-                )}
+                }
             </View>
                 <ScrollView style={{width:'90%',}}>
                 {/*////////////////         title & price      //////////////////*/}
@@ -44,7 +50,7 @@ export default function ListingDetails({ route, navigation }) {
                             rightIcon={
                                 <TouchableOpacity
                                     // Change to message page later
-                                    onPress={() => navigation.navigate("Messaging", { name: "Jacky", pPrice: price, pTitle: title, directMessage: msg})}
+                                    onPress={() => navigation.navigate("Messaging", { name: "Marko", pPrice: price, pTitle: title, directMessage: msg,})}
                                 >
                                     <Ionicons name="send-outline" size={24} color="black" />
                                 </TouchableOpacity>
@@ -57,7 +63,7 @@ export default function ListingDetails({ route, navigation }) {
                     <Text style= {{fontSize: 30, fontWeight: 'bold', marginBottom: 10}}>Seller Information</Text>
                     <View style={{flexDirection: 'row'}}>
                         <MaterialIcons name="supervised-user-circle" size={80} color="black" />
-                        <Text style={{fontSize: 40, marginTop:10, marginLeft: 20}}>Jacky</Text>
+                        <Text style={{fontSize: 40, marginTop:10, marginLeft: 20}}>Marko</Text>
                     </View>
                 </View>
             </ScrollView>

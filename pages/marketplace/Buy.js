@@ -2,7 +2,7 @@ import { Text, Alert, View, StyleSheet, TouchableOpacity, ScrollView, Image} fro
 import { SearchBar } from '@rneui/themed';
 import React, { useEffect, useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
-import StoreService from '../../services/StoreService';
+
 
 export default function Buy({ route, navigation }) {
     const [search, setSearch] = useState("");
@@ -12,30 +12,13 @@ export default function Buy({ route, navigation }) {
     };
 
     // stores all listings
-    const [listings, setlistings] = useState([]);
+    const [listings, setlistings] = useState([
+        { title: "apples", price: "30", category: "fruits", description:"Hi" },
+        { title: "Witbix", price: "23.2", category: "cereal", description:"Yeah Nah" },
 
-    // Uncomment to clear all listings
-    //  useEffect(() => {
-    //     StoreService.clearlistings();
-    //   }, []);
+    ]);
 
-    // read listings from cache on first render
-    useEffect(() => {
-      StoreService.getlistings().then(
-        (cachedlistings) => cachedlistings && setlistings(cachedlistings)
-      );
-    }, []);
-  
-    useEffect(() => {
-      const { image, title, price, category, description } = route.params ?? {};
-      if (title && price) {
-        setlistings((prevlistings) => [...prevlistings, { image, title, price, category, description }]);
-      }
-    }, [route.params]);
-  
-    useEffect(() => {
-      StoreService.savelistings(listings);
-    }, [listings]);
+
 
     return (
         <View style={styles.main_container}>
@@ -85,25 +68,30 @@ export default function Buy({ route, navigation }) {
             {/*/////////////////////      Listings      /////////////////////*/}
             <View style={styles.listing_container}>
                 <ScrollView style={styles.scroll_container}>
-                    {listings.map(({ image, title, price, category, description }, idx) => (
+                    {listings.map(({ title, price, category, description }, idx) => (
                         <TouchableOpacity
                             style={styles.listing_style}
                             key={idx}
                             title={title}
                             onPress={() =>
                                 navigation.navigate("ListingDetails", {
-                                    image, title, price, category, description
+                                    title, price, category, description
                                 })
                             }
                         >
                             <Text style={styles.listing_text} >{title}{"\n"}${price}</Text>
-                                {image ? (
-                                    <Image
-                                        source={{ uri: image }}
-                                        resizeMode="cover"
-                                        style={{ height: '100%', width: '20%', borderRadius:10 }}
-                                    /> 
-                                ) : ( <View ></View>)}
+                            {title === "apples" 
+                            ?<Image
+                                source={require('../../images_icons/apple.jpg')}
+                                resizeMode="cover"
+                                style={{ height: '100%', width: '20%', borderRadius:10 }}
+                            /> : 
+                            <Image
+                                source={require('../../images_icons/WeetBix.png')}
+                                resizeMode="cover"
+                                style={{ height: '100%', width: '20%', borderRadius:10 }}
+                            /> }
+        
                         </TouchableOpacity>
                     ))}
                 </ScrollView>
