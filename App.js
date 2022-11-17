@@ -15,7 +15,9 @@ import Signin from './pages/signin_signup/Signin.js'
 import Signup from './pages/signin_signup/Signup.js'
 import Tutorial from './pages/signin_signup/Tutorial.js';
 import messaging from './pages/messaging/messaging.js';
-
+import CreateGroup from './pages/groups/CreateGroup.js';
+import ExploreGroups from './pages/groups/ExploreGroups.js';
+import GroupDetails from './pages/groups/GroupDetails.js'
 
 const RootStack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -42,6 +44,13 @@ export default function App() {
             component={Profile}
             options={{
             tabBarIcon: ({ size }) => <FontAwesome name="user-circle-o" size={size} color="black" />,
+            }}
+        />
+        <Tabs.Screen
+            name="ExploreGroups"
+            component={ExploreGroups}
+            options={{
+            tabBarIcon: ({ size }) => <MaterialIcons name="groups" size={size} color="black" />,
             }}
         />
         {/* <Tabs.Screen
