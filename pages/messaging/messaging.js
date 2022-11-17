@@ -5,7 +5,32 @@ import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import database from './data.json'
 import { useEffect, useState } from 'react';
 
-export default function messaging({ name, group, directMessage, p_title, p_price }) {
+export default function Messaging({ route, navigation }) {
+  const [name, setName] = useState("");
+  const [group, setGroup] = useState("");
+  const [directMessage, setDirectMessage] = useState("");
+  const [pTitle, setpTitle] = useState("");
+  const [pPrice, setpPrice] = useState("");
+  
+
+  useEffect(() => {
+    const { name, group, directMessage, pTitle, pPrice } = route.params ?? {};
+    setName(name);
+    setGroup(group)
+    setpTitle(pTitle)
+    setpPrice(pPrice)
+
+    if (directMessage) {
+      const msg = {
+                    id: message.length + 1,
+                    message: directMessage,
+                    sender: "self"
+                  }    
+
+      setMessage([...message, msg])
+    }
+}, [route.params]);
+  
   const createAlert = () => {
     Alert.alert(
       "Open gallery",
@@ -51,6 +76,7 @@ export default function messaging({ name, group, directMessage, p_title, p_price
   //   setMessage(database.channels[52976].messages)
   // }, [])
 
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -75,8 +101,8 @@ export default function messaging({ name, group, directMessage, p_title, p_price
                 source={require('../../images_icons/apple.jpg')}
               />
               <View style={styles.details}>
-                <Text style={{ fontSize: 24, marginBottom: 5 }}>{p_title}</Text>
-                <Text style={{ fontSize: 24 }}>AUD ${p_price}</Text>
+                <Text style={{ fontSize: 24, marginBottom: 5 }}>{pTitle}</Text>
+                <Text style={{ fontSize: 24 }}>AUD ${pPrice}</Text>
               </View>
             </View>
         }

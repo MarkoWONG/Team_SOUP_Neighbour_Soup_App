@@ -6,7 +6,6 @@ import { Input, Icon} from '@rneui/themed';
 export default function ListingDetails({ route, navigation }) {
     const {  image, title, price, category, description  } = route.params ?? {};
     const [msg, setMsg] = useState("");
-
     return (
         <View style={{alignItems: "center"}}>
             {/*////////////////            image           //////////////////*/}
@@ -45,7 +44,7 @@ export default function ListingDetails({ route, navigation }) {
                             rightIcon={
                                 <TouchableOpacity
                                     // Change to message page later
-                                    onPress={() => navigation.navigate("Buy", msg)}
+                                    onPress={() => navigation.navigate("Messaging", { name: "Jacky", pPrice: price, pTitle: title, directMessage: msg})}
                                 >
                                     <Ionicons name="send-outline" size={24} color="black" />
                                 </TouchableOpacity>

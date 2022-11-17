@@ -118,14 +118,16 @@ export default function Sell({ route, navigation }) {
                             }
                         }
                     >
-                        <Text style={styles.listing_text} >{title}{"\n"}${price}</Text>
+                        <View style={{width:'80%', flexDirection:'row'}}>
                             {image ? (
                                 <Image
                                     source={{ uri: image }}
                                     resizeMode="cover"
-                                    style={{ height: '100%', width: '20%', borderRadius:10 }}
+                                    style={{ height: '100%', width: '20%', borderRadius:10, marginRight:10 }}
                                 /> 
                             ) : ( <View ></View>)}
+                            <Text style={styles.listing_text} >{title}{"\n"}${price}</Text>
+                        </View>
                         <FontAwesome name="edit" size={50} color="black" />
                     </TouchableOpacity>
                 ))}
@@ -134,7 +136,7 @@ export default function Sell({ route, navigation }) {
         {/*///////////////////////   Create Button    ///////////////////////*/}
         <View style={styles.create_container}>
             <TouchableOpacity 
-                style={{borderRadius: 30, backgroundColor: "#6BB972", width: '45%'}}
+                style={{borderRadius: 30, backgroundColor: "#6BB972", width: '45%', height:50, alignItems:'center',  justifyContent:'center', flexDirection:'row'}}
                 onPress={() => navigation.navigate("Add Listing")}
             >
                 <Text style={styles.create_button_text}>+ Add Listing</Text>
@@ -212,7 +214,7 @@ const styles= StyleSheet.create({
     create_button_text: {
         textAlign: 'center',
         fontSize: 25,
-        color: 'white'
+        color: 'white',
     },
     search_style: {
         width: '80%',
