@@ -14,6 +14,7 @@ import Postcode from './pages/signin_signup/Postcode.js';
 import Signin from './pages/signin_signup/Signin.js'
 import Signup from './pages/signin_signup/Signup.js'
 import Tutorial from './pages/signin_signup/Tutorial.js';
+import messaging from './pages/messaging/messaging.js';
 
 
 const RootStack = createNativeStackNavigator();
@@ -22,13 +23,20 @@ const Tabs = createBottomTabNavigator();
 export default function App() {
     const TabsNav = () => (
         <Tabs.Navigator screenOptions={{ headerShown: false }}>
-        {/* <Tabs.Screen
+            <Tabs.Screen
+                name="Home"
+                component={Home}
+                options={{
+                    tabBarIcon: ({ size }) => <FontAwesome name="user-circle-o" size={size} color="black" />,
+                }}
+            />
+        <Tabs.Screen
             name="Buy"
             component={Buy}
             options={{
             tabBarIcon: ({ size }) => <Fontisto name="shopping-store" size={size} color="black" />,
             }}
-        /> */}
+        />
         <Tabs.Screen
             name="Profile"
             component={Profile}
@@ -36,26 +44,19 @@ export default function App() {
             tabBarIcon: ({ size }) => <FontAwesome name="user-circle-o" size={size} color="black" />,
             }}
         />
-        <Tabs.Screen
+        {/* <Tabs.Screen
             name="Jacky Sucks"
             component={Signup}
             options={{
             tabBarIcon: ({ size }) => <FontAwesome name="user-circle-o" size={size} color="black" />,
             }}
-        />
-        <Tabs.Screen
-            name="Home"
-            component={Home}
-            options={{
-                tabBarIcon: ({ size }) => <FontAwesome name="user-circle-o" size={size} color="black" />,
-            }}
-        />
+        /> */}
         </Tabs.Navigator>
     );
 
     return (
         <NavigationContainer>
-            <RootStack.Navigator initialRouteName="BottomTabs">    
+            <RootStack.Navigator initialRouteName="Signin">    
             <RootStack.Screen
                 name="BottomTabs"
                 component={TabsNav}
@@ -130,6 +131,11 @@ export default function App() {
                 <RootStack.Screen
                 name="Home"
                 component={Home}
+                options={{animation: 'none',  headerShown: false,}}
+                />
+                <RootStack.Screen
+                name="Messaging"
+                component={messaging}
                 options={{animation: 'none',  headerShown: false,}}
                 />
             </RootStack.Navigator>
