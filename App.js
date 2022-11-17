@@ -1,4 +1,4 @@
-import { Fontisto, FontAwesome  } from '@expo/vector-icons';
+import { Fontisto, FontAwesome, MaterialIcons  } from '@expo/vector-icons';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -15,6 +15,9 @@ import Signin from './pages/signin_signup/Signin.js'
 import Signup from './pages/signin_signup/Signup.js'
 import Tutorial from './pages/signin_signup/Tutorial.js';
 import messaging from './pages/messaging/messaging.js';
+import CreateGroup from './pages/groups/CreateGroup.js';
+import ExploreGroups from './pages/groups/ExploreGroups.js';
+import GroupDetails from './pages/groups/GroupDetails.js'
 
 
 const RootStack = createNativeStackNavigator();
@@ -35,6 +38,13 @@ export default function App() {
             component={Buy}
             options={{
             tabBarIcon: ({ size }) => <Fontisto name="shopping-store" size={size} color="black" />,
+            }}
+        />
+        <Tabs.Screen
+            name="ExploreGroups"
+            component={ExploreGroups}
+            options={{
+            tabBarIcon: ({ size }) => <MaterialIcons name="groups" size={size} color="black" />,
             }}
         />
         <Tabs.Screen
