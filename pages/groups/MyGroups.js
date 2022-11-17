@@ -3,49 +3,39 @@ import { SearchBar } from '@rneui/themed';
 import React, { useEffect, useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import StoreService from '../../services/StoreService';
-import { color } from '@rneui/base';
 
-export default function ExploreGroups({ route, navigation }) {
+export default function MyGroups({ route, navigation }) {
     const [search, setSearch] = useState("");
 
     const updateSearch = (search) => {
         setSearch(search);
     };
 
-    //stores all listings
+    // stores all listings
     const [listings, setlistings] = useState([]);
 
-    // // Uncomment to clear all listings
-     useEffect(() => {
-        StoreService.clear();
-      }, []);
+    // Uncomment to clear all listings
+    //  useEffect(() => {
+    //     StoreService.clear();
+    //   }, []);
 
-    // // read listings from cache on first render
+    // read listings from cache on first render
     useEffect(() => {
-      StoreService.getlistings().then(
+      StoreService.getGroups().then(
         (cachedlistings) => cachedlistings && setlistings(cachedlistings)
       );
     }, []);
   
     useEffect(() => {
       const { image, title, description } = route.params ?? {};
-      if (title && description) {
+      if (title) {
             setlistings((prevlistings) => [...prevlistings, { image, title, description }]);
       }
     }, [route.params]);
-    useEffect(() => {
-        const { image_new, title_new, description_new } = route.params ?? {};
-        if (title_new && description_new) {
-            setlistings((prevlistings) => [...prevlistings,{
-                image: image_new, 
-                title: title_new,
-                description: description_new,
-            }]);
-        }
-    }, [route.params]);
+
   
     useEffect(() => {
-      StoreService.savelistings(listings);
+      StoreService.saveGroups(listings);
     }, [listings]);
 
     const deleteListings = (index) => {
@@ -57,18 +47,24 @@ export default function ExploreGroups({ route, navigation }) {
 
   return (
     <View style={styles.main_container}>
+        {/*///////////////////////        Title       ///////////////////////*/}
+        <View style={styles.title_container}>
+            <Text style={styles.title} >I Want to ...</Text>
+        </View>
+
+        {/*///////////////////////        Tabs        ///////////////////////*/}
         <View style={styles.tabs_container}>
-                <View style={styles.first_tab} >
-                    <TouchableOpacity 
-                        style={{height: '100%', width: '100%', backgroundColor: "#ebebeb",}}
-                        onPress={() => navigation.navigate("ExploreGroups")}
-                    >
-                        <Text style={styles.first_tab_text}>Explore Groups</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.second_tab} >
-                    <Text style={styles.first_tab_text}>My Groups</Text>
-                </View>
+            <View style={styles.first_tab} >
+                <TouchableOpacity 
+                    style={{height: '100%', width: '100%', backgroundColor: "#ebebeb",}}
+                    onPress={() => navigation.navigate("ExploreGroups")}
+                >
+                    <Text style={styles.first_tab_text}>Explore</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.second_tab} >
+                <Text style={styles.second_tab_text}>My Groups</Text>
+            </View>
         </View>
         {/*///////////////////////       Search       ///////////////////////*/}
         <View style={styles.search_container}>    
@@ -94,16 +90,6 @@ export default function ExploreGroups({ route, navigation }) {
                 <FontAwesome name="sort-amount-desc" size={40} color="black" />
             </TouchableOpacity>
         </View>
-        <View style={styles.create_container}>
-            <TouchableOpacity
-                onPress={() => navigation.navigate("CreateGroup")}                
-                style={styles.roundButton1}
-            >
-                <Text style={styles.buttontext}>+</Text>
-            </TouchableOpacity>
-            <Text style={styles.title} >Create a new group</Text>
-        </View>
-        
         {/*///////////////////////      Listings      ///////////////////////*/}
         <View style={styles.listing_container}>
             <ScrollView style={styles.scroll_container}>
@@ -112,28 +98,39 @@ export default function ExploreGroups({ route, navigation }) {
                         style={styles.listing_style}
                         key={idx}
                         title={title}
-                        onPress={() => {
+                        // onPress={() => {
                         //     // delete listing then recreate new listing via edit lising page
-                            deleteListings(idx);
-                            navigation.navigate("Edit Listing", {
-                                idx, image, title, price, category, description
-                            })
-                            }
-                        }
+                        //     deleteListings(idx);
+                        //     navigation.navigate("Edit Listing", {
+                        //         idx, image, title, price, category, description
+                        //     })
+                        //     }
+                        // }
                     >
-                        <Text style={styles.listing_text} >Costco apple group</Text>
+                        <View style={{width:'80%', flexDirection:'row'}}>
                             {image ? (
                                 <Image
                                     source={{ uri: image }}
                                     resizeMode="cover"
-                                    style={{ height: '100%', width: '20%', borderRadius:10 }}
+                                    style={{ height: '100%', width: '20%', borderRadius:10, marginRight:10 }}
                                 /> 
                             ) : ( <View ></View>)}
+                            <Text style={styles.listing_text} >{title}</Text>
+                        </View>
                         <FontAwesome name="edit" size={50} color="black" />
                     </TouchableOpacity>
                 ))}
         </ScrollView>
-        </View>        
+        </View>
+        {/*///////////////////////   Create Button    ///////////////////////*/}
+        <View style={styles.create_container}>
+            <TouchableOpacity 
+                style={{borderRadius: 30, backgroundColor: "#6BB972", width: '45%', height:50, alignItems:'center',  justifyContent:'center', flexDirection:'row'}}
+                onPress={() => navigation.navigate("CreateGroup")}
+            >
+                <Text style={styles.create_button_text}>+ Create Groups</Text>
+            </TouchableOpacity>
+        </View>
     </View>
   );
 }
@@ -164,14 +161,10 @@ const styles= StyleSheet.create({
         // borderWidth: 1
     },
     create_container: {
-        marginLeft: 20,
-        flexDirection: 'row',
         alignItems: 'flex-end',
         marginRight: 20,
     },
     search_container: {
-        marginLeft: 20,
-        marginTop: 80,
         alignItems: "start",
         flexDirection: 'row',
     },
@@ -193,9 +186,9 @@ const styles= StyleSheet.create({
     title: {
         color: "black",
         textAlign: 'left',
-        fontSize: 30,
+        fontSize: 20,
         marginTop: 50,
-        marginLeft: 5,
+        marginLeft: 30,
         fontWeight: "bold",
     },
     first_tab_text: {
@@ -210,7 +203,7 @@ const styles= StyleSheet.create({
     create_button_text: {
         textAlign: 'center',
         fontSize: 25,
-        color: 'white'
+        color: 'white',
     },
     search_style: {
         width: '80%',
@@ -244,17 +237,4 @@ const styles= StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
     },
-    roundButton1: {
-        width: 50,
-        height: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 10,
-        borderRadius: 50,
-        backgroundColor: 'green',
-    },
-    buttontext: {
-        color: 'white',
-        fontSize: 25,
-    }
 });
