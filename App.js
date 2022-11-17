@@ -23,6 +23,13 @@ const Tabs = createBottomTabNavigator();
 export default function App() {
     const TabsNav = () => (
         <Tabs.Navigator screenOptions={{ headerShown: false }}>
+            <Tabs.Screen
+                name="Home"
+                component={Home}
+                options={{
+                    tabBarIcon: ({ size }) => <FontAwesome name="user-circle-o" size={size} color="black" />,
+                }}
+            />
         <Tabs.Screen
             name="Buy"
             component={Buy}
@@ -37,26 +44,19 @@ export default function App() {
             tabBarIcon: ({ size }) => <FontAwesome name="user-circle-o" size={size} color="black" />,
             }}
         />
-        <Tabs.Screen
+        {/* <Tabs.Screen
             name="Jacky Sucks"
             component={Signup}
             options={{
             tabBarIcon: ({ size }) => <FontAwesome name="user-circle-o" size={size} color="black" />,
             }}
-        />
-        <Tabs.Screen
-            name="Home"
-            component={Home}
-            options={{
-                tabBarIcon: ({ size }) => <FontAwesome name="user-circle-o" size={size} color="black" />,
-            }}
-        />
+        /> */}
         </Tabs.Navigator>
     );
 
     return (
         <NavigationContainer>
-            <RootStack.Navigator initialRouteName="BottomTabs">    
+            <RootStack.Navigator initialRouteName="Signin">    
             <RootStack.Screen
                 name="BottomTabs"
                 component={TabsNav}
