@@ -2,7 +2,7 @@ import { Text, Alert, View, StyleSheet, TouchableOpacity, ScrollView, Image} fro
 import { SearchBar } from '@rneui/themed';
 import React, { useEffect, useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
-import StoreService from '../../services/StoreService';
+// import StoreService from '../../services/StoreService';
 
 export default function Sell({ route, navigation }) {
     const [search, setSearch] = useState("");
@@ -11,7 +11,7 @@ export default function Sell({ route, navigation }) {
         setSearch(search);
     };
 
-    // stores all listings
+    //stores all listings
     const [listings, setlistings] = useState([]);
 
     // Uncomment to clear all listings
@@ -20,63 +20,46 @@ export default function Sell({ route, navigation }) {
     //   }, []);
 
     // read listings from cache on first render
-    useEffect(() => {
-      StoreService.getlistings().then(
-        (cachedlistings) => cachedlistings && setlistings(cachedlistings)
-      );
-    }, []);
+    // useEffect(() => {
+    //   StoreService.getlistings().then(
+    //     (cachedlistings) => cachedlistings && setlistings(cachedlistings)
+    //   );
+    // }, []);
   
-    useEffect(() => {
-      const { image, title, price, category, description } = route.params ?? {};
-      if (title && price) {
-            setlistings((prevlistings) => [...prevlistings, { image, title, price, category, description }]);
-      }
-    }, [route.params]);
-    useEffect(() => {
-        const { image_new, title_new, price_new, category_new, description_new } = route.params ?? {};
-        if (title_new && price_new) {
-            setlistings((prevlistings) => [...prevlistings,{
-                image: image_new, 
-                title: title_new,
-                price: price_new,
-                category: category_new,
-                description: description_new,
-            }]);
-        }
-    }, [route.params]);
+    // useEffect(() => {
+    //   const { image, title, price, category, description } = useState("");
+    //   if (title && price) {
+    //         setlistings((prevlistings) => [...prevlistings, { image, title, price, category, description }]);
+    //   }
+    // }, []);
+    // useEffect(() => {
+    //     const { image_new, title_new, price_new, category_new, description_new } = useState("");
+    //     if (title_new && price_new) {
+    //         setlistings((prevlistings) => [...prevlistings,{
+    //             image: image_new, 
+    //             title: title_new,
+    //             price: price_new,
+    //             category: category_new,
+    //             description: description_new,
+    //         }]);
+    //     }
+    // }, []);
   
-    useEffect(() => {
-      StoreService.savelistings(listings);
-    }, [listings]);
+    // useEffect(() => {
+    //   StoreService.savelistings(listings);
+    // }, [listings]);
 
-    const deleteListings = (index) => {
-        let listingCopy = [...listings];
-        listingCopy.splice(index, 1);
-        setlistings(listingCopy);
-    }
+    // const deleteListings = (index) => {
+    //     let listingCopy = [...listings];
+    //     listingCopy.splice(index, 1);
+    //     setlistings(listingCopy);
+    // }
 
 
   return (
     <View style={styles.main_container}>
-        {/*///////////////////////        Title       ///////////////////////*/}
-        <View style={styles.title_container}>
-            <Text style={styles.title} >I Want to ...</Text>
-        </View>
 
-        {/*///////////////////////        Tabs        ///////////////////////*/}
-        <View style={styles.tabs_container}>
-            <View style={styles.first_tab} >
-                <TouchableOpacity 
-                    style={{height: '100%', width: '100%', backgroundColor: "#ebebeb",}}
-                    onPress={() => navigation.navigate("Buy")}
-                >
-                    <Text style={styles.first_tab_text}>Buy</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.second_tab} >
-                <Text style={styles.second_tab_text}>Sell</Text>
-            </View>
-        </View>
+
         {/*///////////////////////       Search       ///////////////////////*/}
         <View style={styles.search_container}>    
             <SearchBar
@@ -101,47 +84,46 @@ export default function Sell({ route, navigation }) {
                 <FontAwesome name="sort-amount-desc" size={40} color="black" />
             </TouchableOpacity>
         </View>
+        <View style={styles.create_container}>
+            <TouchableOpacity
+                // onPress={() => navigation.navigate("Add Listing")}                
+                style={styles.roundButton1}
+            >
+                <Text>+</Text>
+            </TouchableOpacity>
+            <Text style={styles.title} >Create a new group</Text>
+        </View>
+        
         {/*///////////////////////      Listings      ///////////////////////*/}
         <View style={styles.listing_container}>
             <ScrollView style={styles.scroll_container}>
                 {listings.map(({ image, title, price, category, description }, idx) => (
                     <TouchableOpacity
                         style={styles.listing_style}
-                        key={idx}
-                        title={title}
-                        onPress={() => {
-                            // delete listing then recreate new listing via edit lising page
-                            deleteListings(idx);
-                            navigation.navigate("Edit Listing", {
-                                idx, image, title, price, category, description
-                            })
-                            }
-                        }
+                        // key={idx}
+                        // title={title}
+                        // onPress={() => {
+                        //     // delete listing then recreate new listing via edit lising page
+                        //     deleteListings(idx);
+                        //     navigation.navigate("Edit Listing", {
+                        //         idx, image, title, price, category, description
+                        //     })
+                        //     }
+                        // }
                     >
-                        <View style={{width:'80%', flexDirection:'row'}}>
+                        <Text style={styles.listing_text} >Costco apple group</Text>
                             {image ? (
                                 <Image
                                     source={{ uri: image }}
                                     resizeMode="cover"
-                                    style={{ height: '100%', width: '20%', borderRadius:10, marginRight:10 }}
+                                    style={{ height: '100%', width: '20%', borderRadius:10 }}
                                 /> 
                             ) : ( <View ></View>)}
-                            <Text style={styles.listing_text} >{title}{"\n"}${price}</Text>
-                        </View>
                         <FontAwesome name="edit" size={50} color="black" />
                     </TouchableOpacity>
                 ))}
         </ScrollView>
-        </View>
-        {/*///////////////////////   Create Button    ///////////////////////*/}
-        <View style={styles.create_container}>
-            <TouchableOpacity 
-                style={{borderRadius: 30, backgroundColor: "#6BB972", width: '45%', height:50, alignItems:'center',  justifyContent:'center', flexDirection:'row'}}
-                onPress={() => navigation.navigate("Add Listing")}
-            >
-                <Text style={styles.create_button_text}>+ Add Listing</Text>
-            </TouchableOpacity>
-        </View>
+        </View>        
     </View>
   );
 }
@@ -214,7 +196,7 @@ const styles= StyleSheet.create({
     create_button_text: {
         textAlign: 'center',
         fontSize: 25,
-        color: 'white',
+        color: 'white'
     },
     search_style: {
         width: '80%',
@@ -247,5 +229,14 @@ const styles= StyleSheet.create({
         textAlign: 'left',
         fontSize: 20,
         fontWeight: "bold",
+    },
+    roundButton1: {
+        width: 100,
+        height: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+        borderRadius: 100,
+        backgroundColor: 'green',
     },
 });

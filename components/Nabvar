@@ -1,0 +1,38 @@
+import styles from './navbar.styles.js';
+import { Text, OnPress, View } from 'react-native';
+import { useState } from 'react';
+
+const pages = ['Messages', 'Groups', 'Home', 'Market', 'Profile']
+
+export default function Navbar() {
+  const [page, setpage] = useState(pages[2]); 
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.contentContainer}>
+      </View>
+    </View>
+  );
+}
+
+const RoundedButton = ({
+  onPress,
+  disabled,
+  buttonColor,
+  text,
+  textColor,
+}) => (
+  <TouchableOpacity
+    style={[
+      styles.buttonBorder,
+      { borderColor: buttonColor, opacity: disabled ? 0.4 : 1 },
+    ]}
+    onPress={onPress}
+    disabled={disabled}
+    activeOpacity={0.4}
+  >
+    <View style={[styles.buttonInnerView, { backgroundColor: buttonColor }]}>
+      <Text style={[styles.buttonText, { color: textColor }]}>{text}</Text>
+    </View>
+  </TouchableOpacity>
+);

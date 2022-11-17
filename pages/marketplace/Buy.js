@@ -1,35 +1,115 @@
-import { Text, View, StyleSheet, TouchableOpacity, Button } from 'react-native';
+import { Text, Alert, View, StyleSheet, TouchableOpacity, ScrollView, Image} from 'react-native';
+import { SearchBar } from '@rneui/themed';
+import React, { useEffect, useState } from 'react';
+import { FontAwesome } from '@expo/vector-icons';
+import StoreService from '../../services/StoreService';
 
 export default function Buy({ route, navigation }) {
-  return (
-    <View style={styles.main_container}>
-        {/*///////////////////////        Title       ///////////////////////*/}
-        <View style={styles.title_container}>
-            <Text style={styles.title} >I Want to ...</Text>
-        </View>
-        
-        {/*///////////////////////        Tabs        ///////////////////////*/}
-        <View style={styles.tabs_container}>
-            <View style={styles.first_tab} >
-                <Text style={styles.first_tab_text}>Buy</Text>
+    const [search, setSearch] = useState("");
+
+    const updateSearch = (search) => {
+        setSearch(search);
+    };
+
+    // stores all listings
+    const [listings, setlistings] = useState([]);
+
+    // Uncomment to clear all listings
+    //  useEffect(() => {
+    //     StoreService.clearlistings();
+    //   }, []);
+
+    // read listings from cache on first render
+    useEffect(() => {
+      StoreService.getlistings().then(
+        (cachedlistings) => cachedlistings && setlistings(cachedlistings)
+      );
+    }, []);
+  
+    useEffect(() => {
+      const { image, title, price, category, description } = route.params ?? {};
+      if (title && price) {
+        setlistings((prevlistings) => [...prevlistings, { image, title, price, category, description }]);
+      }
+    }, [route.params]);
+  
+    useEffect(() => {
+      StoreService.savelistings(listings);
+    }, [listings]);
+
+    return (
+        <View style={styles.main_container}>
+            {/*/////////////////////        Title       /////////////////////*/}
+            <View style={styles.title_container}>
+                <Text style={styles.title} >I Want to ...</Text>
             </View>
-            <View style={styles.second_tab} >
+
+            {/*/////////////////////        Tabs        /////////////////////*/}
+            <View style={styles.tabs_container}>
+                <View style={styles.first_tab} >
+                    <Text style={styles.first_tab_text}>Buy</Text>
+                </View>
+                <View style={styles.second_tab} >
+                    <TouchableOpacity 
+                        style={{height: '100%', width: '100%', backgroundColor: "#ebebeb",}}
+                        onPress={() => navigation.navigate("Sell")}
+                    >
+                        <Text style={styles.second_tab_text}>Sell</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+            {/*//////////////////////       Search       ////////////////////*/}
+            <View style={styles.search_container}>    
+                <SearchBar
+                    placeholder="Type Here..."
+                    onChangeText={updateSearch}
+                    value={search}
+                    lightTheme={true}
+                    round={true}
+                    containerStyle={styles.search_style}
+                    onClear={() => Alert.alert('Search Option', 'When user finishes entering search keywords it will filter the results according to the keywords') }
+                />
                 <TouchableOpacity 
-                    style={{height: '100%', width: '100%', backgroundColor: "#ebebeb",}}
-                    onPress={() => navigation.navigate("Sell")}
+                    style={styles.filter_style}
+                    onPress={() => Alert.alert('Filter Option', 'When tapped a Popup will appear with filter options') }
                 >
-                    <Text style={styles.second_tab_text}>Sell</Text>
+                    <FontAwesome name="filter" size={45} color="black" />
+                </TouchableOpacity>
+                <TouchableOpacity 
+                    style={styles.sort_style}
+                    onPress={() => Alert.alert('Sort Option', 'When tapped a Popup will appear with sort options') }
+                >
+                    <FontAwesome name="sort-amount-desc" size={40} color="black" />
                 </TouchableOpacity>
             </View>
+            {/*/////////////////////      Listings      /////////////////////*/}
+            <View style={styles.listing_container}>
+                <ScrollView style={styles.scroll_container}>
+                    {listings.map(({ image, title, price, category, description }, idx) => (
+                        <TouchableOpacity
+                            style={styles.listing_style}
+                            key={idx}
+                            title={title}
+                            onPress={() =>
+                                navigation.navigate("ListingDetails", {
+                                    image, title, price, category, description
+                                })
+                            }
+                        >
+                            <Text style={styles.listing_text} >{title}{"\n"}${price}</Text>
+                                {image ? (
+                                    <Image
+                                        source={{ uri: image }}
+                                        resizeMode="cover"
+                                        style={{ height: '100%', width: '20%', borderRadius:10 }}
+                                    /> 
+                                ) : ( <View ></View>)}
+                        </TouchableOpacity>
+                    ))}
+                </ScrollView>
+            </View>
         </View>
-
-         {/*///////////////////////      Listings      ///////////////////////*/}
-        <View style={styles.listing_container}>
-            <Text style={styles.title} >Listing1</Text>
-            <Text style={styles.title} >Listing2</Text>
-        </View>
-    </View>
-  );
+    );
 }
 
 const styles= StyleSheet.create({
@@ -49,10 +129,18 @@ const styles= StyleSheet.create({
         alignItems: "start",
         flexDirection: 'row',
     },
+    search_container: {
+        alignItems: "start",
+        flexDirection: 'row',
+    },
     listing_container: {
         backgroundColor: '#ffffff',
-        height: '100%',
+        height: '80%',
         alignItems: "center",
+    },
+    scroll_container: {
+        width: '95%',
+        // borderWidth: 1
     },
     first_tab: {
         height: '100%', 
@@ -85,5 +173,37 @@ const styles= StyleSheet.create({
     second_tab_text: {
         textAlign: 'center',
         fontSize: 50,
-      },
+    },
+    search_style: {
+        width: '80%',
+        height: '101%',
+        backgroundColor: 'white',
+        borderBottomColor: 'white',
+        borderTopColor: 'white',
+    },
+    filter_style: {
+        textAlign: 'center',
+        flexDirection: 'row',
+        paddingTop: 10,
+    },
+    sort_style: {
+        textAlign: 'center',
+        flexDirection: 'row',
+        paddingTop: 15,
+    },
+    listing_style: {
+        borderRadius: 10,
+        borderColor: '#6BB972',
+        borderWidth: 2,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        marginBottom: 10,
+        padding:10,
+    },
+    listing_text: {
+        color: "black",
+        textAlign: 'left',
+        fontSize: 20,
+        fontWeight: "bold",
+    },
 });
