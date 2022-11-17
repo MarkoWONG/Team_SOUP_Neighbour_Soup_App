@@ -1,4 +1,5 @@
 import { TextInput } from '@react-native-material/core'
+import { useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, StatusBar, Pressable, Alert } from 'react-native'
 
 export default function Signin({ navigation }) {
@@ -11,6 +12,27 @@ export default function Signin({ navigation }) {
       ]
     );
 
+  const loginFailAlert = () => {
+    Alert.alert(
+      "Incorrect password",
+      "Please try again",
+      [
+        { text: "Ok" }
+      ]
+    );
+  }
+
+  function checkLogin () {
+    if (email === 'Jacky@gmail.com' && password === 'password') {
+      navigation.navigate('Home')
+    } else {
+      loginFailAlert()
+    }
+  }
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleContainer}>
@@ -19,10 +41,22 @@ export default function Signin({ navigation }) {
       </View>
 
       <View style={styles.inputContainer}>
-        <Input placeholder="Email address" />
-        <Input placeholder="Password" />
+        <TextInput 
+          style={{ height: 70 }}
+          placeholder="Email address" 
+          onChangeText={text => setEmail(text)}
+        />
+        <TextInput 
+          style={{ height: 70 }}
+          placeholder="Password" 
+          secureTextEntry={true} 
+          onChangeText={text => setPassword(text)}
+        />
 
-        <Pressable style={styles.button} >
+        <Pressable 
+          style={styles.button} 
+          onPress={checkLogin}
+        >
           <Text style={styles.buttonText}>Sign in</Text>
         </Pressable>
       </View>
@@ -73,8 +107,8 @@ const styles = StyleSheet.create({
     marginTop: 58
   },  
   inputContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: '90%',
+    marginLeft: 18,
     marginTop: 20,
     marginBottom: 20,
   },

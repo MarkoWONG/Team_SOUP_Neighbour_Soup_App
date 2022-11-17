@@ -22,13 +22,13 @@ const Tabs = createBottomTabNavigator();
 export default function App() {
     const TabsNav = () => (
         <Tabs.Navigator screenOptions={{ headerShown: false }}>
-        {/* <Tabs.Screen
+        <Tabs.Screen
             name="Buy"
             component={Buy}
             options={{
             tabBarIcon: ({ size }) => <Fontisto name="shopping-store" size={size} color="black" />,
             }}
-        /> */}
+        />
         <Tabs.Screen
             name="Profile"
             component={Profile}
