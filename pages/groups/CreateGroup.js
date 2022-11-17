@@ -96,7 +96,7 @@ export default function CreateGroup({ route, navigation }) {
                     style={{borderRadius: 30, backgroundColor: "#6BB972", width: '50%'}}
                     onPress={() => {
                         if(title && description) {
-                            navigation.navigate("Sell", { image, title, description })
+                            navigation.navigate("ExploreGroups", { image, title, description })
                         } 
                         else{
                             Alert.alert("All input fields are required", "Please enter something in each input field")
