@@ -83,7 +83,7 @@ export default function ExploreGroups({ route, navigation }) {
         </View>
         <View style={styles.create_container}>
             <TouchableOpacity
-                onPress={() => navigation.navigate("Create Group")}                
+                onPress={() => navigation.navigate("CreateGroup")}                
                 style={styles.roundButton1}
             >
                 <Text style={styles.buttontext}>+</Text>

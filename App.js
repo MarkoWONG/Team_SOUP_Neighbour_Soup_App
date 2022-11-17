@@ -172,6 +172,22 @@ export default function App() {
                 component={messaging}
                 options={{animation: 'none',  headerShown: false,}}
                 />
+                <RootStack.Screen 
+                  name="CreateGroup" 
+                  component={CreateGroup} 
+                  options={{ headerShown: false }}
+                />
+                <RootStack.Screen 
+                  name="ExploreGroups" 
+                  component={ExploreGroups} 
+                  options={{ headerShown: false }}
+                />
+                <RootStack.Screen 
+                  name="GroupDetails" 
+                  component={GroupDetails} 
+                  options={{ headerShown: false }}
+                />
+
             </RootStack.Navigator>
         </NavigationContainer>
     );
