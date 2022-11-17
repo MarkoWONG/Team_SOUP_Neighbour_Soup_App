@@ -1,0 +1,41 @@
+{
+  "channels": {
+    "52976": {
+      "name": "coles apple group",
+      "group": true,
+      "messages": [
+        {
+          "id": 1,
+          "message": "c",
+          "sender": "self"
+        },
+        {
+          "id": 2,
+          "message": "d",
+          "sender": "self"
+        },
+        {
+          "id": 3,
+          "message": "e",
+          "sender": "self"
+        }
+      ]
+    },
+    "52977": {
+      "name": "Jacky",
+      "group": false,
+      "messages": [
+        {
+          "id": 4,
+          "message": "Where can we meet?",
+          "sender": "self"
+        },
+        {
+          "id": 5,
+          "message": "Your home",
+          "sender": "Jacky"
+        }
+      ]
+    }
+  }
+}
