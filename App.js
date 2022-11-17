@@ -18,6 +18,11 @@ import messaging from './pages/messaging/messaging.js';
 import CreateGroup from './pages/groups/CreateGroup.js';
 import ExploreGroups from './pages/groups/ExploreGroups.js';
 import GroupDetails from './pages/groups/GroupDetails.js'
+import Tutorial1 from './pages/signin_signup/Tutorial1.js';
+import Tutorial2 from './pages/signin_signup/Tutorial2.js';
+import Tutorial3 from './pages/signin_signup/Tutorial3.js';
+import Tutorial4 from './pages/signin_signup/Tutorial4.js';
+
 
 const RootStack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
@@ -135,6 +140,26 @@ export default function App() {
                 <RootStack.Screen
                 name="Tutorial"
                 component={Tutorial}
+                options={{ headerShown: false, }}
+                />
+                <RootStack.Screen
+                name="Tutorial1"
+                component={Tutorial1}
+                options={{ headerShown: false, }}
+                />
+                <RootStack.Screen
+                name="Tutorial2"
+                component={Tutorial2}
+                options={{ headerShown: false, }}
+                />
+                <RootStack.Screen
+                name="Tutorial3"
+                component={Tutorial3}
+                options={{ headerShown: false, }}
+                />
+                <RootStack.Screen
+                name="Tutorial4"
+                component={Tutorial4}
                 options={{ headerShown: false, }}
                 />
                 <RootStack.Screen
