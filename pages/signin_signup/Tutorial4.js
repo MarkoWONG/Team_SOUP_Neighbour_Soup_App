@@ -3,36 +3,28 @@ import { useState } from 'react'
 import { View, Text, StyleSheet, SafeAreaView, StatusBar, Pressable, Alert, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import {Image} from 'react-native' ; 
 
-export default function Tutorial({ navigation }) {
-  const createAlert = () =>
-    Alert.alert(
-      "Tutorials",
-      "it will jump to the next pagination and introduce features app's features to users",
-      [
-        { text: "OK", onPress: () => navigation.navigate('Home') }
-      ]
-  );
+export default function Tutorial4({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={[styles.colour, styles.title]}>Check nearby sale and composters</Text>
+        <Text style={[styles.colour, styles.title]}>Manage your chat</Text>
       </View>
 
       <Image
         style={styles.frame}
-        source={require('./home.png')}
+        source={require('./message.png')}
       />
 
       <Image
         style={styles.dot}
-        source={require('./dot1.png')}
+        source={require('./dot5.png')}
       />
 
       <Pressable 
         style={styles.button}
         onPress={() =>
-          navigation.navigate('Tutorial1')
+          navigation.navigate('BottomTabs')
         }
       >
         <Text style={styles.buttonText}>Next</Text>
@@ -57,7 +49,8 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     marginLeft: 25,
-    marginTop: 58
+    marginTop: 58,
+    marginBottom: 40
   },  
   button: {
     width: '90%',
