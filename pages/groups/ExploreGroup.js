@@ -57,6 +57,19 @@ export default function ExploreGroups({ route, navigation }) {
 
   return (
     <View style={styles.main_container}>
+        <View style={styles.tabs_container}>
+                <View style={styles.first_tab} >
+                    <Text style={styles.first_tab_text}>Explore Groups</Text>
+                </View>
+                <View style={styles.second_tab} >
+                    <TouchableOpacity 
+                        style={{height: '100%', width: '100%', backgroundColor: "#ebebeb",}}
+                        onPress={() => navigation.navigate("MyGroups")}
+                    >
+                        <Text style={styles.second_tab_text}>My Groups</Text>
+                    </TouchableOpacity>
+                </View>
+        </View>
         {/*///////////////////////       Search       ///////////////////////*/}
         <View style={styles.search_container}>    
             <SearchBar

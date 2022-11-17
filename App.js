@@ -18,6 +18,7 @@ import messaging from './pages/messaging/messaging.js';
 import CreateGroup from './pages/groups/CreateGroup.js';
 import ExploreGroups from './pages/groups/ExploreGroup.js';
 import GroupDetails from './pages/groups/GroupDetails.js'
+import MyGroups from './pages/groups/MyGroups'
 import Tutorial1 from './pages/signin_signup/Tutorial1.js';
 import Tutorial2 from './pages/signin_signup/Tutorial2.js';
 import Tutorial3 from './pages/signin_signup/Tutorial3.js';
@@ -187,7 +188,11 @@ export default function App() {
                   component={GroupDetails} 
                   options={{ headerShown: false }}
                 />
-
+                <RootStack.Screen 
+                  name="MyGroups" 
+                  component={MyGroups} 
+                  options={{ headerShown: false }}
+                />
             </RootStack.Navigator>
         </NavigationContainer>
     );
