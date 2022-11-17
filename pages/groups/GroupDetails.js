@@ -6,6 +6,7 @@ import { Input, Icon} from '@rneui/themed';
 export default function ListingDetails({ route, navigation }) {
     const {  image, title, price, category, description  } = useState("");
     const [msg, setMsg] = useState("");
+    const [show, setShow] = useState(false);
 
     return (
         <View style={{alignItems: "center", marginLeft: 30, marginRight: 30}}>
@@ -39,23 +40,45 @@ export default function ListingDetails({ route, navigation }) {
                     {description && <Text>{description}</Text>}
                 </View>
                 
-                
+                { show ?
+                    (
+                        <View style={{height:'30%', width: '100%', marginBottom: 10}}>
+                        <View style={{flexDirection: 'row', marginTop: 20, marginLeft: 20}}>
+                            <AntDesign name="message1" size={30} color="black" style={{marginTop:5 ,marginRight:10}} onPress={() => navigation.navigate("Messaging", { name: "Costco Apple Group"})} />
+                            <Text style={{fontSize:25}}>Go to chat</Text>
+                        </View>
+                    </View>
+                    ) :
+                    (<View></View>)
+                }
                 
                 <View style={styles.create_container}>
                 <TouchableOpacity 
                     style={{borderRadius: 30, backgroundColor: "#FFFFFF", width: '50%'}}
-                    onPress={() => {
-                        if(title && price && image && category && description) {
-                            navigation.navigate("Sell", { image, title, price, category, description })
-                        } 
-                        else{
-                            Alert.alert("All input fields are required", "Please enter something in each input field")
-                        }
-                    }}
+                    onPress={() => (setShow(!show)) }
                 >
-                    <Text style={styles.create_button_text}> Join group </Text>
+                    <Text style={styles.create_button_text}> { show ?
+                    (
+                        <TouchableOpacity 
+                        style={{borderRadius: 30, backgroundColor: "#FFFFFF", width: '50%'}}
+                        onPress={() => (setShow(!show)) }
+                        >
+                        <Text style={styles.create_button_text2}> Leave group </Text>
+                        </TouchableOpacity>
+                    ) 
+                    :
+                    (
+                        <TouchableOpacity 
+                            style={{borderRadius: 30, backgroundColor: "#FFFFFF", width: '50%'}}
+                            onPress={() => (setShow(!show)) }
+                        >
+                            <Text style={styles.create_button_text}> Join group </Text>
+                        </TouchableOpacity>
+                    )
+                    } </Text>
                 </TouchableOpacity>
                 </View>
+                
 
                 {/*////////////////         timecreated      //////////////////*/}                
                 <View style={{height:'10%', width: '100%', marginBottom:20}}>
@@ -161,6 +184,11 @@ const styles= StyleSheet.create({
         fontSize: 25,
         color: 'green',
     },
+    create_button_text2: {
+        textAlign: 'center',
+        fontSize: 25,
+        color: 'red',
+    },
     grey_subtext_1: {
         textAlign: 'center',
         fontSize: 15,
@@ -172,3 +200,4 @@ const styles= StyleSheet.create({
         color: 'grey',
     },
 });
+Footer
