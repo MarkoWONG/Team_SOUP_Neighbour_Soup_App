@@ -1,14 +1,11 @@
 import * as React from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import StoreService from '../../services/StoreService';
+
 
 export default function Home ( navigation ) {
-  const [region, setRegion] = React.useState({
-    latitude: -33.9173,
-    longitude: 151.231,
-    latitudeDelta: 0.05,
-    longitudeDelta: 0.05,
-  });
+	const [listings, setlistings] = React.useState([]);
 
 		// read listings from cache on first render
 	React.useEffect(() => {
@@ -16,6 +13,10 @@ export default function Home ( navigation ) {
 			(cachedlistings) => cachedlistings && setlistings(cachedlistings)
 		);
 	}, []);
+
+	React.useEffect(() => {
+		StoreService.savelistings(listings);
+	}, [listings]);
 
 	const listCoords = [
 		{ latitude : -33.9173 , longitude : 151.231 }, //unsw
@@ -32,27 +33,21 @@ export default function Home ( navigation ) {
         latitudeDelta: 0.05,
         longitudeDelta: 0.05,
       }}
-			reigon={region}
+			// reigon={region}
       style={styles.map}
       >
         {listings.map(({ image, title, price, category, description }, i) => 
-					{
-						if (i < 3) {
-							return (
-							<Marker coordinate={listCoords[i]}
-										pinColor={"green"}
-										title={title}
-										description={description}
-										image={require('./../../assests/green_tag.png')}
-										onPress={() =>
-											navigation.navigate("ListingDetails", {
-													image, title, price, category, description
-											})
-										}
-								/>
-							)
+					<Marker coordinate={listCoords[i]}
+						pinColor={"green"}
+						title={title}
+						description={description}
+						image={require('./../../assests/green_tag.png')}
+						onPress={() =>
+							navigation.navigate("ListingDetails", {
+									image, title, price, category, description
+							})
 						}
-					}
+					/>
 				)}							
         </MapView>
     </View>
