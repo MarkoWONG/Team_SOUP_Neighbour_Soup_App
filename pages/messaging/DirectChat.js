@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 
 
-export default function ExploreGroups({ route, navigation }) {
+export default function DirectChat({ route, navigation }) {
     const [search, setSearch] = useState("");
 
     const updateSearch = (search) => {
@@ -26,7 +26,7 @@ export default function ExploreGroups({ route, navigation }) {
                 <View style={styles.second_tab} >
                     <TouchableOpacity 
                         style={{height: '100%', width: '100%', backgroundColor: "#ebebeb",}}
-                        onPress={() => navigation.navigate("GroupChat")}
+                        onPress={() => navigation.navigate("Chats", {screen: "GroupChat"})}
                     >
                         <Text style={styles.second_tab_text}>Groups</Text>
                     </TouchableOpacity>
@@ -65,8 +65,10 @@ export default function ExploreGroups({ route, navigation }) {
                             key={idx}
                             title={title}
                             onPress={() =>
-                                navigation.navigate("ListingDetails", {
-                                    title, price, category, description
+                                navigation.navigate("Marketplace", 
+                                {
+                                    screen: "ListingDetails",
+                                    params: {title, price, category, description}
                                 })
                             }
                         >
