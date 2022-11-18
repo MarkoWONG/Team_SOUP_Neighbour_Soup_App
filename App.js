@@ -70,7 +70,12 @@ function MarketplaceStackScreen() {
                 headerTintColor: 'black'
             }}
         />
-      </MarketplaceStack.Navigator>
+        <MarketplaceStack.Screen 
+            name="Messaging"
+            component={messaging}
+            options={{animation: 'none',  }}
+        />
+        </MarketplaceStack.Navigator>
     );
   }
 
@@ -109,12 +114,16 @@ function ExploreGroupScreen() {
          <ExploreGroupStack.Screen
             name="GroupDetails" 
             component={GroupDetails} 
-            options={{ headerShown: false }}
         />
          <ExploreGroupStack.Screen
             name="CreateGroup" 
             component={CreateGroup} 
             options={{ headerShown: false }}
+        />
+        <ExploreGroupStack.Screen 
+            name="Messaging"
+            component={messaging}
+            options={{animation: 'none', }}
         />
       </ExploreGroupStack.Navigator>
     );

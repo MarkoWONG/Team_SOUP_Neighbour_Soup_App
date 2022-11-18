@@ -10,9 +10,9 @@ export default function ListingDetails({ route, navigation }) {
 
     return (
         <View style={{alignItems: "center", marginLeft: 30, marginRight: 30, marginTop: StatusBar.currentHeight}}>
-            <View style={{ marginTop: 50 }}>
+            {/* <View style={{ marginTop: 50 }}>
                 <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Group Info</Text>
-            </View>
+            </View> */}
 
             {/*////////////////            image           //////////////////*/}
             <View style={{height:'40%', width: '100%', marginBottom: 10, marginTop: 20}}>
