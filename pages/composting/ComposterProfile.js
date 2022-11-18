@@ -19,11 +19,52 @@ export default function Profile({ route, navigation }) {
                     {/* {title && <Text style= {{fontSize: 30, fontWeight: 'bold'}}>{title}</Text>} */}
                     <Text style= {{fontSize: 30, fontWeight: 'bold'}}>Accepts</Text>
             </View>
+            <SafeAreaView style={{ flex: 1 }}>
+                <View style={{ padding: 20 }}>
+                    <FlatList
+                    data={[
+                        { key: 'Organic scraps' },
+                    ]}
+                    renderItem={({ item }) => {
+                        return (
+                        <View style={{ marginBottom: 10 }}>
+                            <Text style={{ fontSize: 20 }}>{item.key}</Text>
+                        </View>
+                        );
+                    }}
+                    />
+                </View>
+            </SafeAreaView>
+
+            <View style={{
+                    borderBottomColor: 'black',
+                    borderBottomWidth: StyleSheet.hairlineWidth,
+                    marginRight:10,
+                    marginLeft:10,
+            }}/>
 
             <View style={{height:'10%', width: '100%', marginBottom: 20, alignContent: 'left'}}>
                     {/* {title && <Text style= {{fontSize: 30, fontWeight: 'bold'}}>{title}</Text>} */}
                     <Text style= {{fontSize: 30, fontWeight: 'bold'}}>Declines</Text>
             </View>
+            <SafeAreaView style={{ flex: 1 }}>
+                <View style={{ padding: 20 }}>
+                    <FlatList
+                    data={[
+                        { key: 'Egg shells' },
+                        { key: 'Bones' },
+                        { key: 'Stickers' },
+                    ]}
+                    renderItem={({ item }) => {
+                        return (
+                        <View style={{ marginBottom: 10 }}>
+                            <Text style={{ fontSize: 20 }}>{item.key}</Text>
+                        </View>
+                        );
+                    }}
+                    />
+                </View>
+            </SafeAreaView>
 
             {/*////////////////           Message          //////////////////*/}
             <View style={{height:'30%', width: '100%', marginBottom: 10}}>

@@ -1,4 +1,4 @@
-import { Text, Alert, View, StyleSheet, TouchableOpacity , Image} from 'react-native';
+import { Text, Alert, View, StyleSheet, TouchableOpacity , Image, StatusBar} from 'react-native';
 import { Input} from '@rneui/themed';
 import React, { useState, useEffect } from 'react';
 import * as ImagePicker from "expo-image-picker";
@@ -34,6 +34,10 @@ export default function CreateGroup({ route, navigation }) {
     
     return (
         <View style={styles.main_container}>
+            <View style={{ marginTop: 50 }}>
+                <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Group Info</Text>
+            </View>
+
             {/*////////////////        Inputs Fields       //////////////////*/}
             <View style={styles.input_main_container}>
                     {image ? (
@@ -115,13 +119,14 @@ const styles= StyleSheet.create({
         height: '100%', 
         width: '100%',
         alignItems: 'center',
+        marginTop: StatusBar.currentHeight
     },
     input_main_container: {
         backgroundColor: '#ffffff',
         // borderWidth: 1,
-        height: '63%', 
+        height: '55%', 
         width: '90%',
-        marginTop: 10,
+        marginTop: 30,
     },
     outer_input_container:{
         borderWidth: 1, 
@@ -195,7 +200,7 @@ const styles= StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        marginTop: 25,
+        marginTop: 15,
     },
     create_button_text: {
         textAlign: 'center',

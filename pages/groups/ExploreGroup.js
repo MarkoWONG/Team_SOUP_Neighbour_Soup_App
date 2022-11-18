@@ -11,18 +11,11 @@ export default function ExploreGroups({ route, navigation }) {
         setSearch(search);
     };
 
-    // stores all listings
-    const [listings, setlistings] = useState([
-        { title: "apples", price: "30", category: "fruits", description:"Hi" },
-        { title: "Witbix", price: "23.2", category: "cereal", description:"Yeah Nah" },
-
-    ]);
-
     return (
         <View style={styles.main_container}>
             {/*/////////////////////        Title       /////////////////////*/}
             <View style={styles.title_container}>
-                <Text style={styles.title} >I Want to ...</Text>
+                
             </View>
 
             {/*/////////////////////        Tabs        /////////////////////*/}
@@ -66,32 +59,23 @@ export default function ExploreGroups({ route, navigation }) {
             {/*/////////////////////      Listings      /////////////////////*/}
             <View style={styles.listing_container}>
                 <ScrollView style={styles.scroll_container}>
-                    {listings.map(({ title, price, category, description }, idx) => (
+                    <Text style= {styles.grey_subtext_2}>Suggested</Text>
                         <TouchableOpacity
-                            style={styles.listing_style}
-                            key={idx}
-                            title={title}
                             onPress={() =>
-                                navigation.navigate("ListingDetails", {
-                                    title, price, category, description
-                                })
+                                navigation.navigate("GroupDetails")
                             }
+                            style={{flexDirection: 'row', width: '100%', height: '100%'}}
                         >
-                            <Text style={styles.listing_text} >{title}{"\n"}${price}</Text>
-                            {title === "apples" 
-                            ?<Image
+                            <Image
                                 source={require('../../images_icons/apple.jpg')}
                                 resizeMode="cover"
                                 style={{ height: '100%', width: '20%', borderRadius:10 }}
-                            /> : 
-                            <Image
-                                source={require('../../images_icons/WeetBix.png')}
-                                resizeMode="cover"
-                                style={{ height: '100%', width: '20%', borderRadius:10 }}
-                            /> }
-        
+                            />
+                            <View style={{alignItems: 'flex-start', marginLeft: 10}}>
+                                <Text style={styles.listing_text} >Costco Apple Group</Text>
+                                <Text style= {styles.grey_subtext_1}>5 participants</Text>
+                            </View>
                         </TouchableOpacity>
-                    ))}
                 </ScrollView>
             </View>
         </View>
@@ -153,12 +137,12 @@ const styles= StyleSheet.create({
     },
     first_tab_text: {
       textAlign: 'center',
-      fontSize: 50,
+      fontSize: 40,
       color: 'grey'
     },
     second_tab_text: {
         textAlign: 'center',
-        fontSize: 50,
+        fontSize: 40,
     },
     search_style: {
         width: '80%',
@@ -191,5 +175,16 @@ const styles= StyleSheet.create({
         textAlign: 'left',
         fontSize: 20,
         fontWeight: "bold",
+    },
+    grey_subtext_1: {
+        textAlign: 'center',
+        fontSize: 15,
+        color: 'grey',
+    },
+    grey_subtext_2: {
+        textAlign: 'left',
+        fontSize: 15,
+        color: 'grey',
+        marginBottom: 15,
     },
 });

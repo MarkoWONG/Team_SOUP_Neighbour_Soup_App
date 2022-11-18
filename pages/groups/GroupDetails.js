@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, Image, TouchableOpacity, ScrollView, StyleSheet } from "react-native";
+import { Text, View, Image, TouchableOpacity, ScrollView, StyleSheet, StatusBar } from "react-native";
 import { AntDesign, Ionicons , MaterialIcons  } from '@expo/vector-icons';
 import { Input, Icon} from '@rneui/themed';
 
@@ -9,17 +9,18 @@ export default function ListingDetails({ route, navigation }) {
     const [show, setShow] = useState(false);
 
     return (
-        <View style={{alignItems: "center", marginLeft: 30, marginRight: 30}}>
+        <View style={{alignItems: "center", marginLeft: 30, marginRight: 30, marginTop: StatusBar.currentHeight}}>
+            {/* <View style={{ marginTop: 50 }}>
+                <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Group Info</Text>
+            </View> */}
+
             {/*////////////////            image           //////////////////*/}
-            <View style={{height:'40%', width: '100%', marginBottom: 10}}>
-                {image && (
+            <View style={{height:'40%', width: '100%', marginBottom: 10, marginTop: 20}}>
                 <Image
-                    accessibilityIgnoresInvertColors={true}
-                    source={{ uri: image }}
-                    resizeMode='stretch'
-                    style={{ height: '100%', width: '100%', alignSelf: "center" }}
+                    source={require('../../images_icons/apple.jpg')}
+                    resizeMode="cover"
+                    style={{ height: '100%', width: '100%', borderRadius:10 }}
                 />
-                )}
             </View>
                 <ScrollView style={{width:'90%',}}>
                 {/*////////////////         title      //////////////////*/}
@@ -176,7 +177,7 @@ const styles= StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        marginTop: 100,
+        marginTop: 20,
         marginBottom:50,
     },
     create_button_text: {
