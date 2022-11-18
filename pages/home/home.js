@@ -36,7 +36,16 @@ export default function Home ( {route, navigation }) {
 						onPress={()=>{navigation.navigate("ListingDetails", listings[i])} }
 						key={i}
 					/>
-				)}							
+				)}		
+
+				<Marker coordinate={listCoords[2]}
+						pinColor={"green"}
+						title={"Jane"}
+						description={"Looking for Scraps!"}
+						image={require('./../../assets/green_compost.png')}
+						onPress={alert("Link to composter's page's details")}
+						key={i}
+					/>					
         </MapView>
     </View>
   );
@@ -52,12 +61,5 @@ const styles = StyleSheet.create({
   map: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
-  },
-	Button: {
-		color: "#6BB972", 
-		textColor:"white",
-		alignItems: 'center',
-		justifyContent: 'center',
-		opacity: '0%',
-	}
+  }
 });
