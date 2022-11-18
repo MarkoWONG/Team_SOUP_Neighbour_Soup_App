@@ -181,7 +181,7 @@ export default function App() {
 
     return (
         <NavigationContainer>
-            <RootStack.Navigator initialRouteName="BottomTabs">    
+            <RootStack.Navigator initialRouteName="Signin">    
             <RootStack.Screen
                 name="BottomTabs"
                 component={TabsNav}

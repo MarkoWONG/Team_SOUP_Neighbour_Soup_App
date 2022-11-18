@@ -1,6 +1,6 @@
 import * as React from 'react';
 import MapView, { Marker } from 'react-native-maps';
-import { StyleSheet, Button, View, Dimensions } from 'react-native';
+import { StyleSheet, Alert, View, Dimensions } from 'react-native';
 
 
 export default function Home ( {route, navigation }) {
@@ -22,8 +22,8 @@ export default function Home ( {route, navigation }) {
       initialRegion={{
         latitude: -33.9173,
         longitude: 151.231,
-        latitudeDelta: 0.05,
-        longitudeDelta: 0.05,
+        latitudeDelta: 0.02,
+        longitudeDelta: 0.02,
       }}
       style={styles.map}
       >
@@ -33,7 +33,10 @@ export default function Home ( {route, navigation }) {
 						title={title}
 						description={description}
 						image={require('./../../assets/green_tag.png')}
-						onPress={()=>{navigation.navigate("ListingDetails", listings[i])} }
+						onPress={()=>{navigation.navigate("Marketplace", {
+							screen:"ListingDetails",
+							params: listings[i],
+						} )} }
 						key={i}
 					/>
 				)}		
@@ -43,8 +46,9 @@ export default function Home ( {route, navigation }) {
 						title={"Jane"}
 						description={"Looking for Scraps!"}
 						image={require('./../../assets/green_compost.png')}
-						onPress={alert("Link to composter's page's details")}
-						key={i}
+						onPress={() => {
+							Alert.alert("Link to composter's page's details")
+						}}
 					/>					
         </MapView>
     </View>
