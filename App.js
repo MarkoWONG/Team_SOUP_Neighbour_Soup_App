@@ -14,7 +14,7 @@ import Postcode from './pages/signin_signup/Postcode.js';
 import Signin from './pages/signin_signup/Signin.js'
 import Signup from './pages/signin_signup/Signup.js'
 import Tutorial from './pages/signin_signup/Tutorial.js';
-import messaging from './pages/messaging/messaging.js';
+import messaging from './pages/messaging/Messaging.js';
 import CreateGroup from './pages/groups/CreateGroup.js';
 import ExploreGroups from './pages/groups/ExploreGroup.js';
 import GroupDetails from './pages/groups/GroupDetails.js'
@@ -71,7 +71,7 @@ export default function App() {
 
     return (
         <NavigationContainer>
-            <RootStack.Navigator initialRouteName="Signin">    
+            <RootStack.Navigator initialRouteName="BottomTabs">    
             <RootStack.Screen
                 name="BottomTabs"
                 component={TabsNav}
