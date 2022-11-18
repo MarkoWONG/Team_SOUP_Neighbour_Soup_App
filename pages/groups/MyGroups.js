@@ -49,7 +49,7 @@ export default function MyGroups({ route, navigation }) {
     <View style={styles.main_container}>
         {/*///////////////////////        Title       ///////////////////////*/}
         <View style={styles.title_container}>
-            <Text style={styles.title} >I Want to ...</Text>
+            
         </View>
 
         {/*///////////////////////        Tabs        ///////////////////////*/}
@@ -193,11 +193,11 @@ const styles= StyleSheet.create({
     },
     first_tab_text: {
         textAlign: 'center',
-        fontSize: 50,
+        fontSize: 40,
     },
     second_tab_text: {
         textAlign: 'center',
-        fontSize: 50,
+        fontSize: 40,
         color: 'grey'
     },
     create_button_text: {

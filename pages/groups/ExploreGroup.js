@@ -22,7 +22,7 @@ export default function ExploreGroups({ route, navigation }) {
         <View style={styles.main_container}>
             {/*/////////////////////        Title       /////////////////////*/}
             <View style={styles.title_container}>
-                <Text style={styles.title} >I Want to ...</Text>
+                
             </View>
 
             {/*/////////////////////        Tabs        /////////////////////*/}
@@ -66,32 +66,19 @@ export default function ExploreGroups({ route, navigation }) {
             {/*/////////////////////      Listings      /////////////////////*/}
             <View style={styles.listing_container}>
                 <ScrollView style={styles.scroll_container}>
-                    {listings.map(({ title, price, category, description }, idx) => (
                         <TouchableOpacity
-                            style={styles.listing_style}
-                            key={idx}
-                            title={title}
                             onPress={() =>
-                                navigation.navigate("ListingDetails", {
-                                    title, price, category, description
-                                })
+                                navigation.navigate("GroupDetails")
                             }
                         >
                             <Text style={styles.listing_text} >{title}{"\n"}${price}</Text>
-                            {title === "apples" 
-                            ?<Image
+                            <Image
                                 source={require('../../images_icons/apple.jpg')}
                                 resizeMode="cover"
                                 style={{ height: '100%', width: '20%', borderRadius:10 }}
-                            /> : 
-                            <Image
-                                source={require('../../images_icons/WeetBix.png')}
-                                resizeMode="cover"
-                                style={{ height: '100%', width: '20%', borderRadius:10 }}
-                            /> }
-        
+                            />
+                            <Text style= {styles.grey_subtext_1}>5 participants</Text>
                         </TouchableOpacity>
-                    ))}
                 </ScrollView>
             </View>
         </View>
@@ -153,12 +140,12 @@ const styles= StyleSheet.create({
     },
     first_tab_text: {
       textAlign: 'center',
-      fontSize: 50,
+      fontSize: 40,
       color: 'grey'
     },
     second_tab_text: {
         textAlign: 'center',
-        fontSize: 50,
+        fontSize: 40,
     },
     search_style: {
         width: '80%',
@@ -191,5 +178,10 @@ const styles= StyleSheet.create({
         textAlign: 'left',
         fontSize: 20,
         fontWeight: "bold",
+    },
+    grey_subtext_1: {
+        textAlign: 'center',
+        fontSize: 15,
+        color: 'grey',
     },
 });
