@@ -2,7 +2,7 @@ import { Fontisto, FontAwesome  } from '@expo/vector-icons';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from './pages/home/home.js';
+import Home from './pages/home/Home.js';
 import Buy from "./pages/marketplace/Buy.js";
 import Sell from "./pages/marketplace/Sell.js";
 import CreateListing from "./pages/marketplace/CreateListing.js";
