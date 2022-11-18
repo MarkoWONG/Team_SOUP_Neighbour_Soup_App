@@ -1,4 +1,4 @@
-import { Text, Alert, View, StyleSheet, TouchableOpacity, ScrollView, Image} from 'react-native';
+import { Text, Alert, View, StyleSheet, TouchableOpacity, ScrollView, Image, StatusBar} from 'react-native';
 import { SearchBar } from '@rneui/themed';
 import React, { useEffect, useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
@@ -125,10 +125,10 @@ export default function MyGroups({ route, navigation }) {
         {/*///////////////////////   Create Button    ///////////////////////*/}
         <View style={styles.create_container}>
             <TouchableOpacity 
-                style={{borderRadius: 30, backgroundColor: "#6BB972", width: '45%', height:50, alignItems:'center',  justifyContent:'center', flexDirection:'row'}}
+                style={{borderRadius: 20, backgroundColor: "#6BB972", width: '48%', height:50, alignItems:'center',  justifyContent:'center', flexDirection:'row'}}
                 onPress={() => navigation.navigate("CreateGroup")}
             >
-                <Text style={styles.create_button_text}>+ Create Groups</Text>
+                <Text style={styles.create_button_text}>+ Create Group</Text>
             </TouchableOpacity>
         </View>
     </View>
