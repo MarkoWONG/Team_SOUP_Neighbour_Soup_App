@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { View, Text, StyleSheet, SafeAreaView, StatusBar, Pressable, Alert, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import {Image} from 'react-native' ; 
 
-export default function Tutorial({ navigation }) {
+export default function Tutorial2({ navigation }) {
   const createAlert = () =>
     Alert.alert(
       "Tutorials",
@@ -16,23 +16,23 @@ export default function Tutorial({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={[styles.colour, styles.title]}>Check nearby sale and composters</Text>
+        <Text style={[styles.colour, styles.title]}>Create listing in marketplace</Text>
       </View>
 
       <Image
         style={styles.frame}
-        source={require('./home.png')}
+        source={require('./sell.png')}
       />
 
       <Image
         style={styles.dot}
-        source={require('./dot1.png')}
+        source={require('./dot3.png')}
       />
 
       <Pressable 
         style={styles.button}
         onPress={() =>
-          navigation.navigate('Tutorial1')
+          navigation.navigate('Tutorial3')
         }
       >
         <Text style={styles.buttonText}>Next</Text>

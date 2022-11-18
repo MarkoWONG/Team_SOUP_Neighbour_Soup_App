@@ -1,4 +1,4 @@
-import { Fontisto, FontAwesome  } from '@expo/vector-icons';
+import { Fontisto, FontAwesome, MaterialIcons  } from '@expo/vector-icons';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -15,6 +15,14 @@ import Signin from './pages/signin_signup/Signin.js'
 import Signup from './pages/signin_signup/Signup.js'
 import Tutorial from './pages/signin_signup/Tutorial.js';
 import messaging from './pages/messaging/messaging.js';
+import CreateGroup from './pages/groups/CreateGroup.js';
+import ExploreGroups from './pages/groups/ExploreGroup.js';
+import GroupDetails from './pages/groups/GroupDetails.js'
+import MyGroups from './pages/groups/MyGroups'
+import Tutorial1 from './pages/signin_signup/Tutorial1.js';
+import Tutorial2 from './pages/signin_signup/Tutorial2.js';
+import Tutorial3 from './pages/signin_signup/Tutorial3.js';
+import Tutorial4 from './pages/signin_signup/Tutorial4.js';
 
 
 const RootStack = createNativeStackNavigator();
@@ -42,6 +50,13 @@ export default function App() {
             component={Profile}
             options={{
             tabBarIcon: ({ size }) => <FontAwesome name="user-circle-o" size={size} color="black" />,
+            }}
+        />
+        <Tabs.Screen
+            name="ExploreGroups"
+            component={ExploreGroups}
+            options={{
+            tabBarIcon: ({ size }) => <MaterialIcons name="groups" size={size} color="black" />,
             }}
         />
         {/* <Tabs.Screen
@@ -129,6 +144,26 @@ export default function App() {
                 options={{ headerShown: false, }}
                 />
                 <RootStack.Screen
+                name="Tutorial1"
+                component={Tutorial1}
+                options={{ headerShown: false, }}
+                />
+                <RootStack.Screen
+                name="Tutorial2"
+                component={Tutorial2}
+                options={{ headerShown: false, }}
+                />
+                <RootStack.Screen
+                name="Tutorial3"
+                component={Tutorial3}
+                options={{ headerShown: false, }}
+                />
+                <RootStack.Screen
+                name="Tutorial4"
+                component={Tutorial4}
+                options={{ headerShown: false, }}
+                />
+                <RootStack.Screen
                 name="Home"
                 component={Home}
                 options={{animation: 'none',  headerShown: false,}}
@@ -137,6 +172,26 @@ export default function App() {
                 name="Messaging"
                 component={messaging}
                 options={{animation: 'none',  headerShown: false,}}
+                />
+                <RootStack.Screen 
+                  name="CreateGroup" 
+                  component={CreateGroup} 
+                  options={{ headerShown: false }}
+                />
+                <RootStack.Screen 
+                  name="ExploreGroups" 
+                  component={ExploreGroups} 
+                  options={{ headerShown: false }}
+                />
+                <RootStack.Screen 
+                  name="GroupDetails" 
+                  component={GroupDetails} 
+                  options={{ headerShown: false }}
+                />
+                <RootStack.Screen 
+                  name="MyGroups" 
+                  component={MyGroups} 
+                  options={{ headerShown: false }}
                 />
             </RootStack.Navigator>
         </NavigationContainer>

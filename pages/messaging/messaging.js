@@ -94,17 +94,29 @@ export default function Messaging({ route, navigation }) {
         </View>
 
         {group
-          ? <></>
-          : <View style={styles.productContainer}>
-              <Image
-                style={styles.img}
-                source={require('../../images_icons/apple.jpg')}
-              />
-              <View style={styles.details}>
-                <Text style={{ fontSize: 24, marginBottom: 5 }}>{pTitle}</Text>
-                <Text style={{ fontSize: 24 }}>AUD ${pPrice}</Text>
-              </View>
-            </View>
+            ? <></>
+            : (pTitle === "apples" 
+                ? <View style={styles.productContainer}>
+                    <Image
+                        style={styles.img}
+                        source={require('../../images_icons/apple.jpg')}
+                    />
+                    <View style={styles.details}>
+                        <Text style={{ fontSize: 24, marginBottom: 5 }}>{pTitle}</Text>
+                        <Text style={{ fontSize: 24 }}>AUD ${pPrice}</Text>
+                    </View>
+                  </View>
+                : <View style={styles.productContainer}>
+                    <Image
+                        style={styles.img}
+                        source={require('../../images_icons/WeetBix.png')}
+                    />
+                    <View style={styles.details}>
+                        <Text style={{ fontSize: 24, marginBottom: 5 }}>{pTitle}</Text>
+                        <Text style={{ fontSize: 24 }}>AUD ${pPrice}</Text>
+                    </View>
+                  </View>
+            )
         }
       
         {message.map(({ id, message }) => (
