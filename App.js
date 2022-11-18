@@ -15,6 +15,8 @@ import Signin from './pages/signin_signup/Signin.js'
 import Signup from './pages/signin_signup/Signup.js'
 import Tutorial from './pages/signin_signup/Tutorial.js';
 import messaging from './pages/messaging/Messaging.js';
+import GroupChat from './pages/messaging/GroupChat';
+import DirectChat from './pages/messaging/DirectChat.js';
 import CreateGroup from './pages/groups/CreateGroup.js';
 import ExploreGroups from './pages/groups/ExploreGroup.js';
 import GroupDetails from './pages/groups/GroupDetails.js'
@@ -121,8 +123,8 @@ function ExploreGroupScreen() {
             options={{ headerShown: false }}
         />
         <ExploreGroupStack.Screen 
-            name="Messaging"
-            component={messaging}
+            name="DirectChat"
+            component={DirectChat}
             options={{animation: 'none', }}
         />
       </ExploreGroupStack.Navigator>
@@ -142,6 +144,24 @@ function HomeStackScreen() {
     );
 }
 
+const ChatStack = createNativeStackNavigator();
+function ChatStackScreen() {
+    return (
+    <ChatStack.Navigator>
+        <ChatStack.Screen 
+            name="DirectChat"
+            component={DirectChat}
+            options={{ headerShown: false, }}
+        />
+        <ChatStack.Screen
+            name="GroupChat"
+            component={GroupChat}
+            options={{ headerShown: false, }}
+        />
+    </ChatStack.Navigator>
+    );
+}
+
 const RootStack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();
 
@@ -152,7 +172,7 @@ export default function App() {
                 name="Home"
                 component={HomeStackScreen}
                 options={{
-                    tabBarIcon: ({ size }) => <FontAwesome name="user-circle-o" size={size} color="black" />,
+                    tabBarIcon: ({ size }) => <MaterialIcons name="home" size={size} color="black" />,
                 }}
             />
         <Tabs.Screen
@@ -167,6 +187,13 @@ export default function App() {
             component={ExploreGroupScreen}
             options={{
             tabBarIcon: ({ size }) => <MaterialIcons name="groups" size={size} color="black" />,
+            }}
+        />
+        <Tabs.Screen
+            name="Chats"
+            component={ChatStackScreen}
+            options={{
+            tabBarIcon: ({ size }) => <MaterialIcons name="message" size={size} color="black" />,
             }}
         />
         <Tabs.Screen
@@ -227,83 +254,6 @@ export default function App() {
                 component={Tutorial4}
                 options={{ headerShown: false, }}
                 />
-                {/* <RootStack.Screen
-                name="Sell"
-                component={Sell}
-                options={{animation: 'none', headerShown: false, }}
-                />
-                <RootStack.Screen
-                name="Buy"
-                component={Buy}
-                options={{animation: 'none',  headerShown: false,}}
-                />
-                <RootStack.Screen
-                name="Add Listing"
-                component={CreateListing}
-                options={{ 
-                    headerStyle: {height: 120},
-                    headerTitleStyle: {fontSize: 20}, 
-                    headerBackTitle: "", 
-                    headerBackTitleStyle: {fontSize: 30},
-                    headerTintColor: 'black'
-                }}
-                />
-                <RootStack.Screen
-                name="Edit Listing"
-                component={EditListing}
-                options={{ 
-                    headerStyle: {height: 120},
-                    headerTitleStyle: {fontSize: 20}, 
-                    headerBackVisible: false
-                }}
-                />
-                <RootStack.Screen
-                    name="ListingDetails"
-                    component={ListingDetails}
-                    options={{ 
-                        headerStyle: {height: 120},
-                        headerTitleStyle: {fontSize: 20}, 
-                        headerBackTitle: "", 
-                        headerBackTitleStyle: {fontSize: 30},
-                        headerTintColor: 'black'
-                    }}
-                />
-                <RootStack.Screen
-                    name="Edit Profile"
-                    component={EditProfile}
-                    options={{animation: 'none',  headerShown: false,}}
-                />
-                
-                <RootStack.Screen
-                name="Home"
-                component={Home}
-                options={{animation: 'none',  headerShown: false,}}
-                />
-                <RootStack.Screen
-                name="Messaging"
-                component={messaging}
-                options={{animation: 'none',  headerShown: false,}}
-                />
-                <RootStack.Screen 
-                  name="CreateGroup" 
-                  component={CreateGroup} 
-                  options={{ headerShown: false }}
-                />
-                <RootStack.Screen 
-                  name="ExploreGroups" 
-                  component={ExploreGroups} 
-                  options={{ headerShown: false }}
-                />
-                <RootStack.Screen 
-                  name="GroupDetails" 
-                  component={GroupDetails} 
-                  options={{ headerShown: false }}
-                />
-                <RootStack.Screen 
-                  name="MyGroups" 
-                  component={MyGroups} 
-                  options={{ headerShown: false }}
-                /> */}
             </RootStack.Navigator>
         </NavigationContainer>
     );
