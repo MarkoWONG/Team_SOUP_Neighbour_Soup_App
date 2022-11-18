@@ -72,7 +72,16 @@ export default function Profile({ route, navigation }) {
                     inputStyle= {{fontSize: 30, marginLeft: 20}}
                     leftIcon= {<MaterialIcons name="mail" size={30} color="black" />}
                 />
+                <View style={{flexDirection: 'row', alignItems:'center', justifyContent:'space-between', width:'100%'}}>
+                    <Text style={{fontSize:15}}>Identify yourself as a composter to others?</Text>
+                    <TouchableOpacity
+                        onPress={() => Alert.alert('Composter Option', 'This allow the user to identify themselves as a composters for others to see on the map')}
+                    >
+                        <FontAwesome name="toggle-off" size={30} color="black" />
+                    </TouchableOpacity>
+                </View>
             </View>
+            
             {/*/////////////////////      Acessibility        /////////////////////*/}
             <View style={styles.accessibility_container}>
                 <Text style={{fontSize: 30, fontWeight: 'bold', marginLeft: 10, marginBottom: 10}}>Acessibility</Text>
@@ -148,8 +157,7 @@ const styles= StyleSheet.create({
         borderWidth: 0, 
         borderColor: 'black', 
         alignItems: 'center',
-        // flexDirection: 'row',
-        height: '35%',
+        height: '40%',
         width: '95%',
     },
     input_fields_container:{
@@ -164,8 +172,9 @@ const styles= StyleSheet.create({
     },
     accessibility_container:{
         borderTopWidth: 1,
+        marginTop: 10,
         paddingTop: 10,
-        height: '25%',
+        height: '22%',
         width: '100%',
     },
     edit_container: {
