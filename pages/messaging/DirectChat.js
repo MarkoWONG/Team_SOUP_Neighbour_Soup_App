@@ -7,6 +7,11 @@ import { FontAwesome } from '@expo/vector-icons';
 export default function DirectChat({ route, navigation }) {
     const [search, setSearch] = useState("");
 
+    let listings = [
+		{ title: "apples", price: "30", category: "fruits", description:"Hi" },
+		{ title: "Witbix", price: "23.2", category: "cereal", description:"Yeah Nah" },
+	];
+    
     const updateSearch = (search) => {
         setSearch(search);
     };
