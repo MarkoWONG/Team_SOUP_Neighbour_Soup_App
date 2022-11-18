@@ -98,10 +98,7 @@ export default function MyGroups({ route, navigation }) {
                         style={styles.listing_style}
                         key={idx}
                         title={title}
-                        onPress={() => {
-                            navigation.navigate("GroupDetails")
-                        }
-                        }
+                        onPress={() => navigation.navigate("Messaging", { name: title, image: image})} 
                     >
                         <View style={{width:'80%', flexDirection:'row'}}>
                             {image ? (
