@@ -11,13 +11,6 @@ export default function ExploreGroups({ route, navigation }) {
         setSearch(search);
     };
 
-    // stores all listings
-    const [listings, setlistings] = useState([
-        { title: "apples", price: "30", category: "fruits", description:"Hi" },
-        { title: "Witbix", price: "23.2", category: "cereal", description:"Yeah Nah" },
-
-    ]);
-
     return (
         <View style={styles.main_container}>
             {/*/////////////////////        Title       /////////////////////*/}
@@ -66,18 +59,22 @@ export default function ExploreGroups({ route, navigation }) {
             {/*/////////////////////      Listings      /////////////////////*/}
             <View style={styles.listing_container}>
                 <ScrollView style={styles.scroll_container}>
+                    <Text style= {styles.grey_subtext_2}>Suggested</Text>
                         <TouchableOpacity
                             onPress={() =>
                                 navigation.navigate("GroupDetails")
                             }
+                            style={{flexDirection: 'row', width: '100%', height: '100%'}}
                         >
-                            <Text style={styles.listing_text} >{title}{"\n"}${price}</Text>
                             <Image
                                 source={require('../../images_icons/apple.jpg')}
                                 resizeMode="cover"
                                 style={{ height: '100%', width: '20%', borderRadius:10 }}
                             />
-                            <Text style= {styles.grey_subtext_1}>5 participants</Text>
+                            <View style={{alignItems: 'flex-start', marginLeft: 10}}>
+                                <Text style={styles.listing_text} >Costco Apple Group</Text>
+                                <Text style= {styles.grey_subtext_1}>5 participants</Text>
+                            </View>
                         </TouchableOpacity>
                 </ScrollView>
             </View>
@@ -183,5 +180,11 @@ const styles= StyleSheet.create({
         textAlign: 'center',
         fontSize: 15,
         color: 'grey',
+    },
+    grey_subtext_2: {
+        textAlign: 'left',
+        fontSize: 15,
+        color: 'grey',
+        marginBottom: 15,
     },
 });
