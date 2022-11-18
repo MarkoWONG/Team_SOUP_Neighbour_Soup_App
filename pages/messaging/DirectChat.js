@@ -2,15 +2,20 @@ import { Text, Alert, View, StyleSheet, TouchableOpacity, ScrollView, Image} fro
 import { SearchBar } from '@rneui/themed';
 import React, { useEffect, useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
+import StoreService from '../../services/StoreService';
 
 
 export default function DirectChat({ route, navigation }) {
     const [search, setSearch] = useState("");
 
-    let listings = [
-		{ title: "apples", price: "30", category: "fruits", description:"Hi" },
-		{ title: "Witbix", price: "23.2", category: "cereal", description:"Yeah Nah" },
-	];
+    // stores all listings
+    const [listings, setlistings] = useState([]);
+
+    useEffect(() => {
+        StoreService.getlistings().then(
+          (cachedlistings) => cachedlistings && setlistings(cachedlistings)
+        );
+      }, []);
     
     const updateSearch = (search) => {
         setSearch(search);
