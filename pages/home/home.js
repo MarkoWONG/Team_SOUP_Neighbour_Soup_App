@@ -10,8 +10,6 @@ export default function Home ( {route, navigation }) {
 		{ title: "Witbix", price: "23.2", category: "cereal", description:"Yeah Nah" },
 	];
 
-	const [whereto, updateWhereto] = React.useState(0)
-
 	const listCoords = [
 		{ latitude : -33.9173 , longitude : 151.231 }, //unsw
 		{ latitude : -33.9195 , longitude : 151.227 }, //maccas
@@ -20,12 +18,6 @@ export default function Home ( {route, navigation }) {
 	
 	return (
     <View style={styles.container}>
-			{/* <Button 
-			title="Go to Listing"
-			style={styles.Button}
-			// onPress={alert("hello")}
-			onClick={ navigation.navigate("ListingDetails", listings[whereto])}
-		/> */}
       <MapView 
       initialRegion={{
         latitude: -33.9173,
