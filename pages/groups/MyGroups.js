@@ -98,14 +98,10 @@ export default function MyGroups({ route, navigation }) {
                         style={styles.listing_style}
                         key={idx}
                         title={title}
-                        // onPress={() => {
-                        //     // delete listing then recreate new listing via edit lising page
-                        //     deleteListings(idx);
-                        //     navigation.navigate("Edit Listing", {
-                        //         idx, image, title, price, category, description
-                        //     })
-                        //     }
-                        // }
+                        onPress={() => {
+                            navigation.navigate("GroupDetails")
+                        }
+                        }
                     >
                         <View style={{width:'80%', flexDirection:'row'}}>
                             {image ? (
